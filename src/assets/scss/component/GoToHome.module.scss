@@ -1,0 +1,13 @@
+.wrapper {
+	color: #595959;
+	margin: 48px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+	.go-to-home {
+		&:hover {
+			color: #000;
+		}
+	}
+}

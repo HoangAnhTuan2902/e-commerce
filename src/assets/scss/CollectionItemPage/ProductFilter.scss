@@ -1,0 +1,43 @@
+.sort-product {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	.sort {
+		width: 200px;
+		.select {
+			border: none;
+		}
+	}
+	.total-product {
+		font-size: 14px;
+		letter-spacing: 0.6px;
+		line-height: 21px;
+		color: #646464;
+	}
+	.grid-views {
+		display: flex;
+		gap: 10px;
+		color: #222222;
+		font-size: 14px;
+		letter-spacing: 0.6px;
+		line-height: 25.2px;
+		p {
+			&.col {
+				cursor: pointer;
+				font-weight: bold;
+			}
+		}
+	}
+}
+.price-filter {
+	gap: 4px !important;
+	font-size: 14px;
+	letter-spacing: 0.6px;
+	line-height: 25.2px;
+	.name {
+		color: #595959;
+	}
+	.value {
+		color: #222222;
+	}
+}

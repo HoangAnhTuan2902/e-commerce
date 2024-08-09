@@ -1,0 +1,144 @@
+$nav-color: #f6b73b;
+
+.product-item {
+	width: 263px;
+	&:hover {
+		.product-item-image {
+			.button-wrapper {
+				bottom: 16px;
+			}
+		}
+	}
+	.product-item-image {
+		position: relative;
+		overflow: hidden;
+		transition: scale 0.5s ease;
+		&:hover {
+			.img-2 {
+				opacity: 1;
+				transform: scale(1.05);
+			}
+		}
+		.img-1 {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+		.img-2 {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			inset: 0;
+			position: absolute;
+			opacity: 0;
+		}
+		.promotion-prod {
+			position: absolute;
+			z-index: 3;
+			top: 12px;
+			left: 12px;
+			text-transform: uppercase;
+			font-size: 12px;
+			font-weight: 700;
+			letter-spacing: 0.6px;
+			line-height: 12px;
+			& > * {
+				margin-bottom: 4px;
+			}
+			.new-prod {
+				color: #fff;
+				background-color: #000;
+				padding: 3px 6px;
+			}
+			.sale-prod {
+				color: #fff;
+				padding: 3px 6px;
+				background-color: #e10000;
+			}
+			.discount-percent-prod {
+				display: inline-block;
+				text-align: center;
+				background-color: #fff;
+				padding: 3px 6px;
+				color: #e10000;
+			}
+		}
+		.interact-prod {
+			flex-direction: column;
+			gap: 8px;
+			position: absolute;
+			z-index: 3;
+			top: 12px;
+			right: 12px;
+
+			.interact-icon {
+				transition: background-color 0.3s ease, color 0.1s ease, transform 0.1s ease;
+				background-color: #fff;
+				border-radius: 50%;
+				padding: 10px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				&:hover {
+					background-color: #000;
+					color: #e4e4e4;
+					.icon {
+						transform: scale(1.1);
+					}
+				}
+			}
+		}
+		.button-wrapper {
+			position: absolute;
+			z-index: 3;
+			bottom: -48px;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 85%;
+			.button {
+				padding: 15px 0;
+				margin: auto;
+				background-color: $nav-color;
+				text-align: center;
+				&:hover {
+					transform: scale(1.02);
+				}
+				.add-btn {
+					font-size: 15px;
+					letter-spacing: 1px;
+					line-height: 18px;
+					color: #fff;
+				}
+			}
+		}
+	}
+	.product-item-content {
+		margin-top: 17px;
+		.prod-name {
+			letter-spacing: 0.6px;
+			line-height: 20.8px;
+			color: #222222;
+		}
+		.prod-price {
+			margin-top: 5px;
+
+			display: flex;
+			align-items: flex-end;
+			gap: 8px;
+			.price {
+				color: #d80014;
+				font-size: 16px;
+				font-weight: 700;
+				letter-spacing: 0.6px;
+				&.prod-price-sale {
+					margin-bottom: 2px;
+					color: #6f6f6f;
+					font-size: 12px;
+					font-weight: 700;
+					letter-spacing: 0.6px;
+					text-decoration: line-through;
+				}
+			}
+		}
+	}
+}

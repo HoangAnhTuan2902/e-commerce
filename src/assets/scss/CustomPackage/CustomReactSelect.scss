@@ -1,0 +1,51 @@
+.react-select {
+	width: 200px;
+	.react-select__control {
+		border: none !important;
+		box-shadow: none !important;
+		.react-select__value-container {
+			font-size: 14px;
+			font-weight: 700;
+			letter-spacing: 0.4px;
+			line-height: 21px;
+			&:hover {
+				text-decoration: underline;
+				text-underline-offset: 3px;
+			}
+			.react-select__single-value {
+				text-transform: uppercase;
+			}
+			// .react-select__input-container {
+			// 	.react-select__input {
+			// 	}
+			// }
+		}
+		.react-select__indicators {
+			.react-select__indicator-separator {
+				display: none;
+			}
+			// .react-select__indicator {
+			// }
+		}
+	}
+	.react-select__menu {
+		border: none !important;
+		margin: 0;
+		.react-select__menu-list {
+			margin: 14px 0 14px 10px;
+			.react-select__option {
+				&:hover {
+					background-color: #fff;
+				}
+				&.react-select__option--is-selected {
+					background-color: transparent;
+					color: #000;
+					font-weight: bold;
+				}
+				&.react-select__option--is-focused {
+					background-color: transparent;
+				}
+			}
+		}
+	}
+}

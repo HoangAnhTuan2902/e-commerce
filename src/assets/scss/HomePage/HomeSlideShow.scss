@@ -1,0 +1,99 @@
+$nav-color: #f6b73b;
+
+.slide-show-wrapper {
+	position: relative;
+
+	.nav-btn {
+		bottom: 50%;
+		left: 0;
+		right: 0;
+		position: absolute;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		.btn {
+			padding: 10px;
+			// background-color: #f8f8f8;
+			&.left-btn {
+				margin-left: 20px;
+			}
+		}
+		.btn {
+			&.right-btn {
+				margin-right: 20px;
+			}
+		}
+	}
+}
+
+.slide-show-container {
+	.slide-show-item {
+		.slide-show-item-img {
+			position: relative;
+			width: 100%;
+			// height: 551px;
+			// padding-right: 20px;
+			.image {
+				// position: absolute;
+				// inset: 0 0 0 0;
+				width: 100%;
+				height: auto;
+				object-fit: cover;
+			}
+			.slide-content {
+				width: 550px;
+				top: 50%;
+				left: 35%;
+				transform: translate(-50%, -50%);
+				position: absolute;
+				display: flex;
+				.main-content {
+					width: 600px;
+					font-family: 'Nunito Sans', sans-serif;
+					& > * {
+						margin-bottom: 24px;
+					}
+					.title {
+						font-size: 57.6px;
+						letter-spacing: 0.72px;
+						line-height: 72px;
+					}
+					.content {
+						color: #222222;
+						font-size: 18.06px;
+						letter-spacing: 0.6px;
+						line-height: 27.09px;
+					}
+					.discover-btn {
+						background-color: $nav-color;
+						color: #fff;
+						padding: 14px 30px;
+						text-transform: uppercase;
+						font-size: 15px;
+						letter-spacing: 1px;
+						line-height: 18px;
+					}
+				}
+			}
+		}
+		.nav-btn {
+			position: absolute;
+			z-index: 10;
+			bottom: 50%;
+			// width: 100%;
+			display: flex;
+			justify-content: space-around;
+			transform: translateY(-50%);
+			.btn {
+				&.left-btn {
+					margin-left: 20px;
+				}
+			}
+			.btn {
+				&.right-btn {
+					margin-left: 20px;
+				}
+			}
+		}
+	}
+}

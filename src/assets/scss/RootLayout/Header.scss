@@ -1,0 +1,54 @@
+.header-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 24px 30px;
+	.logo-side {
+		img {
+			max-width: 190px;
+			max-height: 53px;
+			object-fit: cover;
+		}
+	}
+	.input-side {
+		display: flex;
+		gap: 20px;
+		.input-form {
+			width: 245px;
+			display: flex;
+			align-items: flex-end;
+			border-bottom: 1px solid #e8e8e8;
+			.search-icon {
+				margin-bottom: 3px;
+				opacity: 0.4;
+			}
+			input {
+				font-family: Arial, Helvetica, sans-serif;
+				padding: 10px 25px 0 10px;
+				margin-bottom: 6px;
+				letter-spacing: 0.4px;
+				font-size: 1rem;
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 986px) {
+	.header-container {
+		margin: 24px 15px;
+		.logo-side {
+			img {
+				max-width: 150px;
+				max-height: 42px;
+			}
+		}
+		.input-side {
+			.input-form {
+				width: 200px;
+				input {
+					padding: 10px 20px 0 10px;
+				}
+			}
+		}
+	}
+}

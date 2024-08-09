@@ -1,0 +1,28 @@
+/* eslint-disable react/prop-types */
+import classNames from 'classnames/bind';
+import styles from '~/assets/scss/styles.module.scss';
+import { Link } from 'react-router-dom';
+
+const cx = classNames.bind(styles);
+function CollectionChild({ collection }) {
+	return (
+		<div className={cx('collection-items-container')}>
+			<Link
+				className={cx('collection-item')}
+				to={collection.to}>
+				<div className={cx('collection-collection-img')}>
+					<img
+						className={cx('collection-item-img')}
+						src={collection.image}
+					/>
+				</div>
+				<div className={cx('collection-item-content')}>
+					<p className={cx('collection-item-title')}>{collection.name}</p>
+					<p className={cx('collection-item-total')}>{collection.total} products</p>
+				</div>
+			</Link>
+		</div>
+	);
+}
+
+export default CollectionChild;

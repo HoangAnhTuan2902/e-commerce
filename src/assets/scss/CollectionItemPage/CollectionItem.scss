@@ -1,0 +1,54 @@
+.collection-item-container {
+	.promotion {
+		margin: 86px 0 77px 0;
+		text-align: center;
+		.promotion-title {
+			font-size: 36px;
+			font-weight: 700;
+			letter-spacing: 0.6px;
+			line-height: 46.8px;
+			margin-bottom: 20px;
+			p {
+				text-align: center;
+			}
+			.promotion-sub-title {
+				letter-spacing: 0.6px;
+				line-height: 28.8px;
+			}
+		}
+	}
+	.featured-collection-list {
+		display: flex;
+		justify-content: center;
+	}
+	.collection-title {
+		margin: 93px 0 56px 0;
+		text-align: center;
+		font-size: 48px;
+		letter-spacing: 0.6px;
+		line-height: 62.4px;
+		padding: 25px 0;
+		text-align: center;
+		color: rgb(246, 183, 59);
+		background-color: #e1e2e4;
+	}
+	.products-list {
+		margin: 0 auto;
+		width: 75%;
+		.product-title {
+			margin-bottom: 26px;
+		}
+		.product-wrapper {
+			.product-layout {
+				background-color: #fff;
+				.left-side {
+					background-color: transparent;
+					margin-right: 30px;
+				}
+				.main-side {
+					background-color: transparent;
+				}
+			}
+		}
+	}
+}

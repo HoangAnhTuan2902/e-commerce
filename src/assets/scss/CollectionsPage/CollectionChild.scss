@@ -1,0 +1,37 @@
+.collection-items-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	.collection-item {
+		width: 360px;
+		overflow: hidden;
+		&:hover {
+			.collection-item-img {
+				img {
+					transform: scale(1.05);
+				}
+			}
+		}
+		.collection-item-img {
+			height: 360px;
+			img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+		.collection-item-content {
+			text-align: center;
+			.collection-item-title {
+				font-size: 24px;
+				font-weight: 700;
+				letter-spacing: 0.6px;
+				line-height: 31.2px;
+			}
+			.collection-item-total {
+				letter-spacing: 0.6px;
+				line-height: 28.8px;
+				color: #222222;
+			}
+		}
+	}
+}

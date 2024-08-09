@@ -1,0 +1,22 @@
+// import css home page
+@import './HomePage/HomePage.scss';
+@import './HomePage/HomeSlideShow.scss';
+@import './HomePage/HomeBestSeller.scss';
+@import './HomePage/HomeToolShowRoom.scss';
+@import './HomePage/ItemShowRoomTool.scss';
+@import './HomePage/HomeFreshNews.scss';
+
+//import css collection item page
+@import './CollectionItemPage/CollectionItem.scss';
+@import './CollectionItemPage/ProductItem.scss';
+@import './CollectionItemPage/ProductslideShow.scss';
+@import './CollectionItemPage//ProductFilter.scss';
+
+//import css collections page
+@import './CollectionsPage/CollectionsPage.scss';
+@import './CollectionsPage/CollectionChild.scss';
+
+//import css root layout
+@import './RootLayout/Header.scss';
+@import './RootLayout/Navigation.scss';
+@import './RootLayout/Footer.scss';

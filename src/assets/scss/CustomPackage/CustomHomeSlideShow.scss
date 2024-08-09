@@ -1,0 +1,47 @@
+// custom react-slick
+// .slide-show {
+.slick-slider {
+	// background-color: #f8f8f8;
+	.slick-arrow {
+		width: 20px;
+		&.slick-prev {
+			display: none !important;
+			left: 25px;
+			z-index: -10;
+		}
+		&.slick-next {
+			z-index: -10;
+			right: 25px;
+		}
+		&:hover {
+			text-shadow: 0 0 10px #000;
+		}
+	}
+	.slick-dots {
+		bottom: 16px;
+		li {
+			button {
+				transition: all 0.3s ease;
+				&:before {
+					border-radius: 50%;
+					border: 1px solid #000;
+					font-size: 0;
+					width: 10px;
+					height: 10px;
+				}
+				&:hover {
+					transform: scale(1.05) !important;
+				}
+			}
+
+			&.slick-active {
+				button {
+					&:before {
+						background-color: #000;
+					}
+				}
+			}
+		}
+	}
+}
+// }
