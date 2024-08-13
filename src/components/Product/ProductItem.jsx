@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import classNames from 'classnames/bind';
 import styles from '~/assets/scss/styles.module.scss';
 import { Row } from 'antd';
@@ -5,35 +7,50 @@ import { Row } from 'antd';
 import { GoHeart } from 'react-icons/go';
 import { LuArrowRightLeft } from 'react-icons/lu';
 import { PiEyeLight } from 'react-icons/pi';
-import ProdImg1_1 from '~/assets/images/best_seller_1.1.png';
-import ProdImg1_2 from '~/assets/images/best_seller_1.2.webp';
 
 const cx = classNames.bind(styles);
-function ProductItem() {
+// eslint-disable-next-line react/prop-types
+function ProductItem({ product, colView }) {
+	// eslint-disable-next-line react/prop-types
+	const { image_1, image_2, name, price, salePrice, discountPercent } = product;
+
 	return (
 		<div className={cx('product-item')}>
 			<div className={cx('product-item-image')}>
 				<img
 					className={cx('img-1')}
-					src={ProdImg1_1}
+					src={image_1}
 				/>
 				<img
 					className={cx('img-2')}
-					src={ProdImg1_2}
+					src={image_2}
 				/>
 				<div className={cx('promotion-prod')}>
 					<div className={cx('new-prod')}>new</div>
-					<div className={cx('sale-prod')}>sale</div>
-					<div className={cx('discount-percent-prod')}>-9%</div>
+					{salePrice > 0 && (
+						<>
+							<div className={cx('sale-prod')}>sale</div>
+							<div className={cx('discount-percent-prod')}>-{discountPercent}%</div>
+						</>
+					)}
 				</div>
 				<Row className={cx('interact-prod')}>
-					<div className={cx('interact-icon')}>
+					<div
+						className={cx('interact-icon', {
+							'interact-icon-two-col': colView === 'two-col',
+						})}>
 						<GoHeart className={cx('icon')} />
 					</div>
-					<div className={cx('interact-icon')}>
+					<div
+						className={cx('interact-icon', {
+							'interact-icon-two-col': colView === 'two-col',
+						})}>
 						<LuArrowRightLeft className={cx('icon')} />
 					</div>
-					<div className={cx('interact-icon')}>
+					<div
+						className={cx('interact-icon', {
+							'interact-icon-two-col': colView === 'two-col',
+						})}>
 						<PiEyeLight className={cx('icon')} />
 					</div>
 				</Row>
@@ -44,10 +61,10 @@ function ProductItem() {
 				</div>
 			</div>
 			<div className={cx('product-item-content')}>
-				<p className={cx('prod-name')}>1278 Acrylic Felt Sheet - 1 Pc</p>
+				<p className={cx('prod-name')}>{name}</p>
 				<div className={cx('prod-price')}>
-					<p className={cx('price', 'prod-price-sale')}>$500</p>
-					<p className={cx('price')}>$450</p>
+					<p className={cx('price', { 'prod-price-sale': salePrice > 0 })}>${price}</p>
+					{salePrice > 0 && <p className={cx('price')}>${salePrice}</p>}
 				</div>
 			</div>
 		</div>

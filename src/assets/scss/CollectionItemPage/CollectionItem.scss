@@ -47,6 +47,16 @@
 				}
 				.main-side {
 					background-color: transparent;
+					&.two-col {
+						display: grid;
+						grid-template-columns: repeat(2, 1fr);
+						gap: 24px;
+					}
+					&.three-col {
+						display: grid;
+						grid-template-columns: repeat(3, 1fr);
+						gap: 30px;
+					}
 				}
 			}
 		}

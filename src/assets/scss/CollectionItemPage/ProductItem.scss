@@ -1,7 +1,7 @@
 $nav-color: #f6b73b;
 
 .product-item {
-	width: 263px;
+	min-width: 263px;
 	&:hover {
 		.product-item-image {
 			.button-wrapper {
@@ -14,6 +14,9 @@ $nav-color: #f6b73b;
 		overflow: hidden;
 		transition: scale 0.5s ease;
 		&:hover {
+			.img-1 {
+				opacity: 0;
+			}
 			.img-2 {
 				opacity: 1;
 				transform: scale(1.05);
@@ -72,13 +75,21 @@ $nav-color: #f6b73b;
 			right: 12px;
 
 			.interact-icon {
-				transition: background-color 0.3s ease, color 0.1s ease, transform 0.1s ease;
+				transition: background-color 0.3s ease, color 0.1s ease, transform 0.1s ease, color 0.1s ease;
 				background-color: #fff;
 				border-radius: 50%;
 				padding: 10px;
 				display: flex;
 				justify-content: center;
 				align-items: center;
+				&.interact-icon-two-col {
+					width: 50px;
+					height: 50px;
+					.icon {
+						// width: 20px;
+						// height: 20px;
+					}
+				}
 				&:hover {
 					background-color: #000;
 					color: #e4e4e4;

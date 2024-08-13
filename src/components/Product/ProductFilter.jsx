@@ -1,5 +1,15 @@
+// import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { useCallback } from 'react';
+import debounce from 'lodash/debounce';
+import React from 'react';
 import Select from 'react-select';
-import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	setSelectedOption,
+	setIsStockFilter,
+	setInputValueMinFilter,
+	setInputValueMaxFilter,
+} from './productSlice';
 import { Collapse, Checkbox, Row, Slider, InputNumber, Space, ConfigProvider } from 'antd';
 import classNames from 'classnames/bind';
 import styles from '~/assets/scss/styles.module.scss';
@@ -8,9 +18,26 @@ import '~/assets/scss/CustomPackage/CustomReactSelect.scss';
 
 const cx = classNames.bind(styles);
 
-function ProductFilter() {
-	const [inputValueMin, setInputValueMin] = useState(0);
-	const [inputValueMax, setInputValueMax] = useState(640);
+// eslint-disable-next-line react/prop-types
+function ProductFilter({ totalProduct }) {
+	const isStockChecked = useSelector((state) => state.product.isStockFilter);
+	const inputValueMin = useSelector((state) => state.product.inputValueMinFilter);
+	const inputValueMax = useSelector((state) => state.product.inputValueMaxFilter);
+	const maxPrice = useSelector((state) => state.product.maxPrice);
+
+	const dispatch = useDispatch();
+
+	// Hàm debounce cho các thay đổi giá trị
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	const debouncedMinChange = useCallback(
+		debounce((e) => dispatch(setInputValueMinFilter(e)), 300),
+		[dispatch],
+	);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	const debouncedMaxChange = useCallback(
+		debounce((e) => dispatch(setInputValueMaxFilter(e)), 300),
+		[dispatch],
+	);
 
 	const items = [
 		{
@@ -25,12 +52,17 @@ function ProductFilter() {
 						},
 					}}>
 					<Row>
-						<Checkbox>Checkbox</Checkbox>
-						<p>(18)</p>
+						<Checkbox
+							checked={isStockChecked}
+							onChange={(e) => dispatch(setIsStockFilter(e.target.checked))}
+							className={cx('check-box')}>
+							In Stock
+						</Checkbox>
+						<p>({totalProduct})</p>
 					</Row>
 					<Row>
-						<Checkbox>Checkbox</Checkbox>
-						<p>(18)</p>
+						<Checkbox className={cx('check-box')}>Out of stock</Checkbox>
+						<p>(0)</p>
 					</Row>
 				</ConfigProvider>
 			),
@@ -59,27 +91,26 @@ function ProductFilter() {
 								min={0}
 								max={570}
 								value={inputValueMin}
-								onChange={(e) => setInputValueMin(e)}
+								onChange={(e) => debouncedMinChange(e)}
 							/>
 							<InputNumber
 								min={90}
-								max={640}
+								max={maxPrice}
 								value={inputValueMax}
-								onChange={(e) => setInputValueMax(e)}
+								onChange={(e) => debouncedMaxChange(e)}
 							/>
 						</Space>
 					</ConfigProvider>
 					<Slider
-						max={640}
 						range
+						max={maxPrice}
 						step={10}
 						value={[inputValueMin, inputValueMax]}
 						tooltip={{ open: false }}
 						onChange={(e) => {
-							setInputValueMin(e[0]);
-							setInputValueMax(e[1]);
+							dispatch(setInputValueMinFilter(e[0]));
+							dispatch(setInputValueMaxFilter(e[1]));
 						}}
-						defaultValue={[inputValueMin, inputValueMax]}
 					/>
 					<Row className={cx('price-filter')}>
 						<p className={cx('name')}>Price $:</p>
@@ -98,6 +129,7 @@ function ProductFilter() {
 
 	return (
 		<Collapse
+			className={cx('collapse')}
 			items={items}
 			defaultActiveKey={['1']}
 			onChange={onChange}
@@ -105,9 +137,12 @@ function ProductFilter() {
 	);
 }
 
-// eslint-disable-next-line react/display-name
-const SortProduct = React.memo(() => {
-	const [selectedOption, setSelectedOption] = useState(null);
+// eslint-disable-next-line react/display-name, react/prop-types
+const SortProduct = React.memo(({ setColView, colView, totalProduct }) => {
+	const dispatch = useDispatch();
+
+	const selectedOption = useSelector((state) => state.product.selectedOption);
+
 	const options = [
 		{ value: 'Featured', label: 'Featured' },
 		{ value: 'Best selling', label: 'Best selling' },
@@ -119,6 +154,10 @@ const SortProduct = React.memo(() => {
 		{ value: 'Date, new to old', label: 'Date, new to old' },
 	];
 
+	const handleSelectChange = (option) => {
+		dispatch(setSelectedOption(option.value));
+	};
+
 	return (
 		<div className={cx('sort-product')}>
 			<div className={cx('sort')}>
@@ -126,16 +165,24 @@ const SortProduct = React.memo(() => {
 					placeholder='Sort Options'
 					classNamePrefix={'react-select'}
 					className='react-select'
-					defaultValue={selectedOption}
-					onChange={setSelectedOption}
+					value={options.find((option) => option.value === selectedOption)}
+					onChange={handleSelectChange}
 					options={options}
 				/>
 			</div>
-			<p className={cx('total-product')}>18 products</p>
+			<p className={cx('total-product')}>{totalProduct} products</p>
 			<div className={cx('grid-views')}>
 				<p>View:</p>
-				<p className={cx('two-col', 'col')}>2</p>
-				<p className={cx('three-col', 'col')}>3</p>
+				<p
+					onClick={() => setColView('two-col')}
+					className={cx('two-col', 'col', { active: colView === 'two-col' })}>
+					2
+				</p>
+				<p
+					onClick={() => setColView('three-col')}
+					className={cx('three-col', 'col', { active: colView === 'three-col' })}>
+					3
+				</p>
 			</div>
 		</div>
 	);

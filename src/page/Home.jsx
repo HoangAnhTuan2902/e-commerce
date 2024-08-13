@@ -3,50 +3,45 @@ import { FaArrowRightLong } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import HomeBestSeller from '../components/Home/HomeBestSeller';
 
-import Tool1 from '../assets/images/tool1.webp';
-import Tool2 from '../assets/images/tool2.webp';
-import Tool3 from '../assets/images/tool3.webp';
-import Tool4 from '../assets/images/tool4.png';
-import Tool5 from '../assets/images/tool5.png';
+// import images.SaleUp1 from '../assets/images/sale_up_1.png';
+// import images.SaleUp2 from '../assets/images/sale_up_2.png';
+// import DiscountImg1 from '../assets/images/discount-img-1.png';
+// import DiscountImg2 from '../assets/images/discount-img-2.png';
+import images from '../assets/images';
+
 import styles from '../assets/scss/styles.module.scss';
 import HomeSlideShow from '../components/Home/HomeSlideShow';
-
-import SaleUp1 from '../assets/images/sale_up_1.png';
-import SaleUp2 from '../assets/images/sale_up_2.png';
-
-import DiscountImg1 from '../assets/images/discount-img-1.png';
-import DiscountImg2 from '../assets/images/discount-img-2.png';
 import HomeToolShowRoom from '~/components/Home/HomeToolShowRoom';
 import HomeFreshNews from '~/components/Home/HomeFreshNews';
 
 const DUMMY_DATA_TOOL = [
 	{
 		id: 1,
-		image: Tool1,
+		image: images.Tool1,
 		name: 'hand tools',
 		to: '/hand-tools',
 	},
 	{
 		id: 2,
-		image: Tool2,
+		image: images.Tool2,
 		name: 'paint tools',
 		to: '/paint-tools',
 	},
 	{
 		id: 3,
-		image: Tool3,
+		image: images.Tool3,
 		name: 'power tools',
 		to: '/power-tools',
 	},
 	{
 		id: 4,
-		image: Tool4,
+		image: images.Tool4,
 		name: 'plumbing tools',
 		to: '/plumbing-tools',
 	},
 	{
 		id: 5,
-		image: Tool5,
+		image: images.Tool5,
 		name: 'electician',
 		to: '/electician',
 	},
@@ -86,8 +81,8 @@ function Home() {
 				<div className={cx('sale-up-item')}>
 					<div className={cx('sale-up-image')}>
 						<img
-							src={SaleUp1}
-							alt={SaleUp1}
+							src={images.SaleUp1}
+							alt={images.SaleUp1}
 						/>
 					</div>
 					<div className={cx('sale-up-content')}>
@@ -102,8 +97,8 @@ function Home() {
 				<div className={cx('sale-up-item')}>
 					<div className={cx('sale-up-image')}>
 						<img
-							src={SaleUp2}
-							alt={SaleUp2}
+							src={images.SaleUp2}
+							alt={images.SaleUp2}
 						/>
 					</div>
 					<div className={cx('sale-up-content')}>
@@ -121,7 +116,7 @@ function Home() {
 				<div className={cx('discount-item')}>
 					<div className={cx('discount-img')}>
 						<img
-							src={DiscountImg1}
+							src={images.DiscountImg1}
 							alt=''
 						/>
 						<div className={cx('discount-content')}>
@@ -136,7 +131,7 @@ function Home() {
 				<div className={cx('discount-item')}>
 					<div className={cx('discount-img')}>
 						<img
-							src={DiscountImg2}
+							src={images.DiscountImg2}
 							alt=''
 						/>
 						<div className={cx('discount-content')}>

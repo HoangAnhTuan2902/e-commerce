@@ -26,6 +26,9 @@
 				cursor: pointer;
 				font-weight: bold;
 			}
+			&.active {
+				text-decoration: underline;
+			}
 		}
 	}
 }
@@ -39,5 +42,10 @@
 	}
 	.value {
 		color: #222222;
+	}
+}
+.collapse {
+	.check-box {
+		width: 150px;
 	}
 }
