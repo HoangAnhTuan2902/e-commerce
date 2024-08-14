@@ -10,6 +10,26 @@ import ProdImg5_1 from '~/assets/images/best_seller_5.1.png';
 import ProdImg5_2 from '~/assets/images/best_seller_5.2.webp';
 import ProdImg6_1 from '~/assets/images/best_seller_6.1.png';
 import ProdImg6_2 from '~/assets/images/best_seller_6.2.webp';
+import ProdImg7_1 from '~/assets/images/best_seller_7.1.png';
+import ProdImg7_2 from '~/assets/images/best_seller_7.2.webp';
+import ProdImg8_1 from '~/assets/images/best_seller_8.1.png';
+import ProdImg8_2 from '~/assets/images/best_seller_8.2.webp';
+import ProdImg9_1 from '~/assets/images/collection-img-14.webp';
+import ProdImg9_2 from '~/assets/images/best_seller_9.2.webp';
+import ProdImg10_1 from '~/assets/images/best_seller_10.1.png';
+import ProdImg10_2 from '~/assets/images/best_seller_10.2.webp';
+import ProdImg11_1 from '~/assets/images/best_seller_11.1.png';
+import ProdImg11_2 from '~/assets/images/best_seller_11.2.webp';
+import ProdImg12_1 from '~/assets/images/best_seller_12.1.png';
+import ProdImg12_2 from '~/assets/images/best_seller_12.2.webp';
+import ProdImg13_1 from '~/assets/images/best_seller_13.1.png';
+import ProdImg13_2 from '~/assets/images/best_seller_13.2.webp';
+import ProdImg14_1 from '~/assets/images/best_seller_14.1.png';
+import ProdImg14_2 from '~/assets/images/best_seller_14.2.webp';
+import ProdImg15_1 from '~/assets/images/best_seller_15.1.png';
+import ProdImg15_2 from '~/assets/images/best_seller_15.2.webp';
+import ProdImg16_1 from '~/assets/images/best_seller_16.1.png';
+import ProdImg16_2 from '~/assets/images/best_seller_16.2.webp';
 
 import CollectionImg1 from '~/assets/images/collection-img-1.webp';
 import CollectionImg2 from '~/assets/images/collection-img-2.webp';
@@ -24,7 +44,6 @@ import CollectionImg10 from '~/assets/images/collection-img-10.webp';
 import CollectionImg11 from '~/assets/images/collection-img-11.webp';
 import CollectionImg12 from '~/assets/images/collection-img-12.webp';
 import CollectionImg13 from '~/assets/images/collection-img-13.webp';
-import CollectionImg14 from '~/assets/images/collection-img-14.webp';
 
 import Tool1 from '../assets/images/tool1.webp';
 import Tool2 from '../assets/images/tool2.webp';
@@ -56,6 +75,26 @@ const images = {
 	ProdImg5_2,
 	ProdImg6_1,
 	ProdImg6_2,
+	ProdImg9_1,
+	ProdImg7_1,
+	ProdImg7_2,
+	ProdImg8_1,
+	ProdImg8_2,
+	ProdImg9_2,
+	ProdImg10_1,
+	ProdImg10_2,
+	ProdImg11_1,
+	ProdImg11_2,
+	ProdImg12_1,
+	ProdImg12_2,
+	ProdImg13_1,
+	ProdImg13_2,
+	ProdImg14_1,
+	ProdImg14_2,
+	ProdImg15_1,
+	ProdImg15_2,
+	ProdImg16_1,
+	ProdImg16_2,
 	CollectionImg1,
 	CollectionImg2,
 	CollectionImg6,
@@ -69,7 +108,6 @@ const images = {
 	CollectionImg11,
 	CollectionImg12,
 	CollectionImg13,
-	CollectionImg14,
 	Tool1,
 	Tool2,
 	Tool3,
