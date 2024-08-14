@@ -36,6 +36,13 @@ import SaleUp2 from '../assets/images/sale_up_2.png';
 import DiscountImg1 from '../assets/images/discount-img-1.png';
 import DiscountImg2 from '../assets/images/discount-img-2.png';
 
+import LeftArrow from '../assets/images/left-arrow.png';
+import RightArrow from '../assets/images/right-arrow.png';
+
+import Slide1 from '~/assets/images/slide1.png';
+import Slide2 from '~/assets/images/slide2.png';
+import Slide3 from '~/assets/images/slide3.png';
+
 const images = {
 	ProdImg1_1,
 	ProdImg1_2,
@@ -72,6 +79,11 @@ const images = {
 	SaleUp2,
 	DiscountImg1,
 	DiscountImg2,
+	Slide1,
+	Slide2,
+	Slide3,
+	LeftArrow,
+	RightArrow,
 };
 
 export default images;

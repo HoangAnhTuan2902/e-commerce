@@ -3,20 +3,25 @@ import _ from 'lodash';
 import classNames from 'classnames/bind';
 import Sider from 'antd/es/layout/Sider';
 import { useDispatch, useSelector } from 'react-redux';
-import { setMaxPrice } from '~/components/Product/productSlice';
-
 import { useOutletContext } from 'react-router-dom';
 import Layout, { Content } from 'antd/es/layout/layout';
 import { useState, Suspense, lazy, useEffect, useCallback } from 'react';
+import {
+	setInputValueMinFilter,
+	setInputValueMaxFilter,
+	setIsStockFilter,
+} from '~/components/Product/productSlice';
 
+import images from '~/assets/images';
 import GoToHome from '~/components/GoToHome';
 import styles from '~/assets/scss/styles.module.scss';
+import { setMaxPrice } from '~/components/Product/productSlice';
 import ProductSlideShow from '~/components/Product/ProductSlideShow';
 import GetRandomDateWithinYears from '~/components/GetRandomDateWithinYears';
 import { ProductFilter, SortProduct } from '~/components/Product/ProductFilter';
-import images from '~/assets/images';
-
+import FilterState from '~/components/CollectionItem/FilterState';
 const ProductItem = lazy(() => import('~/components/Product/ProductItem'));
+
 const cx = classNames.bind(styles);
 
 const DUMMY_PRODUCT_LIST = [
@@ -28,7 +33,7 @@ const DUMMY_PRODUCT_LIST = [
 		date: GetRandomDateWithinYears(3),
 		image_1: images.ProdImg1_1,
 		image_2: images.ProdImg1_2,
-		inStock: true,
+		inStock: false,
 	},
 	{
 		id: 2,
@@ -38,7 +43,7 @@ const DUMMY_PRODUCT_LIST = [
 		date: GetRandomDateWithinYears(3),
 		image_1: images.ProdImg2_1,
 		image_2: images.ProdImg2_2,
-		inStock: true,
+		inStock: false,
 	},
 	{
 		id: 3,
@@ -90,48 +95,49 @@ DUMMY_PRODUCT_LIST.forEach((item) => {
 function CollectionItem() {
 	const nameCollection = useOutletContext();
 	const [colView, setColView] = useState('three-col');
-	const [totalProduct, setTotalProduct] = useState(DUMMY_PRODUCT_LIST.length);
-	const [sortedProducts, setSortedProducts] = useState(DUMMY_PRODUCT_LIST);
+	const [filteredProducts, setFilteredProducts] = useState(DUMMY_PRODUCT_LIST);
+	const [totalProductAfterFilter, setTotalProductAfterFilter] = useState(DUMMY_PRODUCT_LIST.length);
+	const [totalProductIsStock, setTotalProductIsStock] = useState(
+		DUMMY_PRODUCT_LIST.filter((product) => product.inStock).length,
+	);
+	const [filterStateMounted, setFilterStateMounted] = useState(false);
 
 	const optionSort = useSelector((state) => state.product.selectedOption);
 	const isStockFilterChecked = useSelector((state) => state.product.isStockFilter);
 	const inputValueMinFilter = useSelector((state) => state.product.inputValueMinFilter);
 	const inputValueMaxFilter = useSelector((state) => state.product.inputValueMaxFilter);
+	const maxPrice = useSelector((state) => state.product.maxPrice);
 	const dispatch = useDispatch();
 
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+	useEffect(() => {
+		const calculatedMaxPrice = Math.max(...DUMMY_PRODUCT_LIST.map((product) => product.price));
+		dispatch(setMaxPrice(calculatedMaxPrice));
+	}, [dispatch]);
+
 	const handleFilterPriceChange = useCallback(
-		debounce((inputValueMinFilter, inputValueMaxFilter) => {
-			const filtered = _.filter(DUMMY_PRODUCT_LIST, (product) => {
-				return product.price >= inputValueMinFilter && product.price <= inputValueMaxFilter;
-			});
-			setTotalProduct(filtered.length);
-			setSortedProducts(filtered);
+		debounce((filteredProducts) => {
+			setFilteredProducts(filteredProducts);
+			setTotalProductAfterFilter(filteredProducts.length);
 		}, 500),
 		[],
 	);
 
 	useEffect(() => {
-		const calculatedsetMaxPrice = Math.max(...DUMMY_PRODUCT_LIST.map((product) => product.price));
-		dispatch(setMaxPrice(calculatedsetMaxPrice));
-	}, [dispatch]);
+		let filtered = [...DUMMY_PRODUCT_LIST];
 
-	useEffect(() => {
-		handleFilterPriceChange(inputValueMinFilter, inputValueMaxFilter);
-	}, [inputValueMinFilter, inputValueMaxFilter, handleFilterPriceChange]);
+		// Filter products by price
+		filtered = filtered.filter(
+			(product) => product.price >= inputValueMinFilter && product.price <= inputValueMaxFilter,
+		);
+		setTotalProductIsStock(filtered.filter((product) => product.inStock).length);
 
-	useEffect(() => {
+		// Filter by stock status
 		if (isStockFilterChecked) {
-			const filtered = DUMMY_PRODUCT_LIST.filter((product) => product.inStock);
-			setTotalProduct(filtered.length);
-			setSortedProducts(filtered);
-		} else {
-			setTotalProduct(DUMMY_PRODUCT_LIST.length);
-			setSortedProducts(DUMMY_PRODUCT_LIST);
+			filtered = filtered.filter((product) => product.inStock);
 		}
-	}, [isStockFilterChecked]);
-	useEffect(() => {
-		let sorted = _.cloneDeep(DUMMY_PRODUCT_LIST);
+
+		// Apply sorting
+		let sorted = _.cloneDeep(filtered);
 		if (optionSort === 'Price, low to high') {
 			sorted = _.sortBy(sorted, ['price']);
 		} else if (optionSort === 'Price, high to low') {
@@ -145,8 +151,40 @@ function CollectionItem() {
 		} else if (optionSort === 'Alphabetically, Z-A') {
 			sorted = _.sortBy(sorted, ['name']).reverse();
 		}
-		setSortedProducts(sorted);
-	}, [optionSort]);
+
+		// Trigger debounced filter change
+		handleFilterPriceChange(sorted);
+	}, [
+		isStockFilterChecked,
+		inputValueMinFilter,
+		inputValueMaxFilter,
+		optionSort,
+		handleFilterPriceChange,
+	]);
+
+	const debouncedSetFilterStateMounted = useCallback(
+		debounce(() => {
+			if (inputValueMinFilter === 0 && inputValueMaxFilter === maxPrice) {
+				setFilterStateMounted(false);
+			} else setFilterStateMounted(true);
+		}, 500),
+		[inputValueMinFilter, inputValueMaxFilter],
+	);
+
+	useEffect(() => {
+		// Chỉ kích hoạt debouncedSetFilterStateMounted khi có sự thay đổi bộ lọc
+		debouncedSetFilterStateMounted();
+	}, [inputValueMinFilter, inputValueMaxFilter]);
+	console.log(filterStateMounted);
+
+	const handleClosePriceFilterState = () => {
+		setFilterStateMounted(false);
+		dispatch(setInputValueMinFilter(0));
+		dispatch(setInputValueMaxFilter(maxPrice));
+	};
+	const handleCloseIsStockFilterState = () => {
+		dispatch(setIsStockFilter(false));
+	};
 
 	return (
 		<div className={cx('collection-item-container')}>
@@ -164,7 +202,8 @@ function CollectionItem() {
 			<div className={cx('products-list')}>
 				<div className={cx('product-title')}>
 					<SortProduct
-						totalProduct={totalProduct}
+						totalProduct={DUMMY_PRODUCT_LIST.length}
+						totalProductAfterFilter={totalProductAfterFilter}
 						setColView={setColView}
 						colView={colView}
 					/>
@@ -174,10 +213,35 @@ function CollectionItem() {
 						<Sider
 							width={260}
 							className={cx('left-side')}>
-							<ProductFilter totalProduct={totalProduct} />
+							{filterStateMounted || isStockFilterChecked ? (
+								<div>
+									<p
+										className={cx('remove-filter-state')}
+										onClick={() => {
+											handleClosePriceFilterState();
+											handleCloseIsStockFilterState();
+										}}>
+										Remove All
+									</p>
+								</div>
+							) : null}
+							{isStockFilterChecked && (
+								<FilterState
+									handleCloseIsStockFilterState={handleCloseIsStockFilterState}
+									isStockFilterChecked={isStockFilterChecked}
+								/>
+							)}
+							{filterStateMounted && (
+								<FilterState
+									handleClosePriceFilterState={handleClosePriceFilterState}
+									inputValueMinFilter={inputValueMinFilter}
+									inputValueMaxFilter={inputValueMaxFilter}
+								/>
+							)}
+							<ProductFilter totalProductIsStock={totalProductIsStock} />
 						</Sider>
 						<Content className={cx('main-side', colView)}>
-							{sortedProducts.map((product) => (
+							{filteredProducts.map((product) => (
 								<Suspense
 									fallback={<div>Đang tải...</div>}
 									key={product.id}>

@@ -1,18 +1,13 @@
+import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import { FaArrowRightLong } from 'react-icons/fa6';
-import { Link } from 'react-router-dom';
-import HomeBestSeller from '../components/Home/HomeBestSeller';
 
-// import images.SaleUp1 from '../assets/images/sale_up_1.png';
-// import images.SaleUp2 from '../assets/images/sale_up_2.png';
-// import DiscountImg1 from '../assets/images/discount-img-1.png';
-// import DiscountImg2 from '../assets/images/discount-img-2.png';
 import images from '../assets/images';
-
 import styles from '../assets/scss/styles.module.scss';
-import HomeSlideShow from '../components/Home/HomeSlideShow';
-import HomeToolShowRoom from '~/components/Home/HomeToolShowRoom';
 import HomeFreshNews from '~/components/Home/HomeFreshNews';
+import HomeSlideShow from '../components/Home/HomeSlideShow';
+import HomeBestSeller from '../components/Home/HomeBestSeller';
+import HomeToolShowRoom from '~/components/Home/HomeToolShowRoom';
 
 const DUMMY_DATA_TOOL = [
 	{

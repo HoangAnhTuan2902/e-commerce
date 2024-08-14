@@ -3,31 +3,26 @@ import classNames from 'classnames/bind';
 import Slider from 'react-slick';
 import styles from '../../assets/scss/styles.module.scss';
 import '../../assets/scss/CustomPackage/CustomHomeSlideShow.scss';
+import images from '~/assets/images';
 
-import Slide1 from '../../assets/images/slide1.png';
-import Slide2 from '../../assets/images/slide2.png';
-import Slide3 from '../../assets/images/slide3.png';
-
-import LeftArrow from '../../assets/images/left-arrow.png';
-import RightArrow from '../../assets/images/right-arrow.png';
 import { useRef } from 'react';
 
 const DUMMY_TYPE_SLIDE_SHOW = [
 	{
 		id: 1,
-		image: Slide1,
+		image: images.Slide1,
 		title: 'Your Trusted So rce for Quality Spa es',
 		content: 'Where Quality Meets Reliability',
 	},
 	{
 		id: 2,
-		image: Slide2,
+		image: images.Slide2,
 		title: 'Driving Innovation in Spare Parts',
 		content: 'Where Quality Meets Reliability',
 	},
 	{
 		id: 3,
-		image: Slide3,
+		image: images.Slide3,
 		title: 'Your Foundation for Quality Construction',
 		content: 'Where Quality Meets Reliability',
 	},
@@ -86,7 +81,7 @@ function HomeSlideShow() {
 					onClick={goToPrev}
 					className={cx('btn', 'left-btn')}>
 					<img
-						src={LeftArrow}
+						src={images.LeftArrow}
 						alt=''
 					/>
 				</button>
@@ -94,7 +89,7 @@ function HomeSlideShow() {
 					onClick={goToNext}
 					className={cx('btn', 'right-btn')}>
 					<img
-						src={RightArrow}
+						src={images.RightArrow}
 						alt=''
 					/>
 				</button>

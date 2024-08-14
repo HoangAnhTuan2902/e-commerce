@@ -4,18 +4,21 @@ import { LuPhone } from 'react-icons/lu';
 import { IoMailOutline } from 'react-icons/io5';
 import { GoClock } from 'react-icons/go';
 import { FaSquareFacebook, FaInstagram, FaYoutube, FaPinterest, FaTiktok } from 'react-icons/fa6';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 function Footer() {
 	const [isFocus, setIsFocus] = useState(false);
+	const inputRef = useRef(null);
 
 	const handleFocus = () => {
 		setIsFocus(true);
 	};
 	const handleBlur = () => {
-		setIsFocus(false);
+		if (inputRef.current?.value === '') {
+			setIsFocus(false);
+		} else setIsFocus(true);
 	};
 
 	return (
@@ -24,6 +27,7 @@ function Footer() {
 				<p className={cx('title')}>Be in touch with us:</p>
 				<form>
 					<input
+						ref={inputRef}
 						onBlur={handleBlur}
 						onFocus={handleFocus}
 						className={cx('input')}

@@ -1,7 +1,6 @@
-// import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { useCallback } from 'react';
 import debounce from 'lodash/debounce';
-import React from 'react';
+import { memo } from 'react';
 import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -19,7 +18,7 @@ import '~/assets/scss/CustomPackage/CustomReactSelect.scss';
 const cx = classNames.bind(styles);
 
 // eslint-disable-next-line react/prop-types
-function ProductFilter({ totalProduct }) {
+function ProductFilter({ totalProductIsStock }) {
 	const isStockChecked = useSelector((state) => state.product.isStockFilter);
 	const inputValueMin = useSelector((state) => state.product.inputValueMinFilter);
 	const inputValueMax = useSelector((state) => state.product.inputValueMaxFilter);
@@ -30,12 +29,12 @@ function ProductFilter({ totalProduct }) {
 	// Hàm debounce cho các thay đổi giá trị
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const debouncedMinChange = useCallback(
-		debounce((e) => dispatch(setInputValueMinFilter(e)), 300),
+		debounce((e) => dispatch(setInputValueMinFilter(e)), 500),
 		[dispatch],
 	);
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const debouncedMaxChange = useCallback(
-		debounce((e) => dispatch(setInputValueMaxFilter(e)), 300),
+		debounce((e) => dispatch(setInputValueMaxFilter(e)), 500),
 		[dispatch],
 	);
 
@@ -58,7 +57,7 @@ function ProductFilter({ totalProduct }) {
 							className={cx('check-box')}>
 							In Stock
 						</Checkbox>
-						<p>({totalProduct})</p>
+						<p>({totalProductIsStock})</p>
 					</Row>
 					<Row>
 						<Checkbox className={cx('check-box')}>Out of stock</Checkbox>
@@ -123,22 +122,17 @@ function ProductFilter({ totalProduct }) {
 		},
 	];
 
-	const onChange = (key) => {
-		console.log(key);
-	};
-
 	return (
 		<Collapse
 			className={cx('collapse')}
 			items={items}
 			defaultActiveKey={['1']}
-			onChange={onChange}
 		/>
 	);
 }
 
 // eslint-disable-next-line react/display-name, react/prop-types
-const SortProduct = React.memo(({ setColView, colView, totalProduct }) => {
+const SortProduct = memo(({ setColView, colView, totalProduct, totalProductAfterFilter }) => {
 	const dispatch = useDispatch();
 
 	const selectedOption = useSelector((state) => state.product.selectedOption);
@@ -170,7 +164,14 @@ const SortProduct = React.memo(({ setColView, colView, totalProduct }) => {
 					options={options}
 				/>
 			</div>
-			<p className={cx('total-product')}>{totalProduct} products</p>
+
+			{totalProductAfterFilter < totalProduct ? (
+				<p className={cx('total-product')}>
+					{totalProductAfterFilter} of {totalProduct} products
+				</p>
+			) : (
+				<p className={cx('total-product')}>{totalProductAfterFilter} products</p>
+			)}
 			<div className={cx('grid-views')}>
 				<p>View:</p>
 				<p
