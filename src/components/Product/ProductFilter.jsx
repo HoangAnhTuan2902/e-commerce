@@ -1,5 +1,3 @@
-import { useCallback } from 'react';
-import debounce from 'lodash/debounce';
 import { memo } from 'react';
 import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,18 +23,6 @@ function ProductFilter({ totalProductIsStock }) {
 	const maxPrice = useSelector((state) => state.product.maxPrice);
 
 	const dispatch = useDispatch();
-
-	// Hàm debounce cho các thay đổi giá trị
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	const debouncedMinChange = useCallback(
-		debounce((e) => dispatch(setInputValueMinFilter(e)), 500),
-		[dispatch],
-	);
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	const debouncedMaxChange = useCallback(
-		debounce((e) => dispatch(setInputValueMaxFilter(e)), 500),
-		[dispatch],
-	);
 
 	const items = [
 		{
@@ -90,13 +76,13 @@ function ProductFilter({ totalProductIsStock }) {
 								min={0}
 								max={570}
 								value={inputValueMin}
-								onChange={(e) => debouncedMinChange(e)}
+								onChange={(e) => dispatch(setInputValueMinFilter(e))}
 							/>
 							<InputNumber
 								min={90}
 								max={maxPrice}
 								value={inputValueMax}
-								onChange={(e) => debouncedMaxChange(e)}
+								onChange={(e) => dispatch(setInputValueMaxFilter(e))}
 							/>
 						</Space>
 					</ConfigProvider>

@@ -1,288 +1,139 @@
-import debounce from 'lodash/debounce';
-import _ from 'lodash';
-import classNames from 'classnames/bind';
-import Sider from 'antd/es/layout/Sider';
 import { useDispatch, useSelector } from 'react-redux';
-import { useOutletContext } from 'react-router-dom';
+import { useState, useEffect, useCallback, Suspense, lazy } from 'react';
+import _ from 'lodash';
+import Sider from 'antd/es/layout/Sider';
 import Layout, { Content } from 'antd/es/layout/layout';
-import { useState, Suspense, lazy, useEffect, useCallback } from 'react';
+import classNames from 'classnames/bind';
 import {
+	setMaxPrice,
 	setInputValueMinFilter,
 	setInputValueMaxFilter,
 	setIsStockFilter,
 } from '~/components/Product/productSlice';
+import { useOutletContext } from 'react-router-dom';
 
-import images from '~/assets/images';
 import GoToHome from '~/components/GoToHome';
 import styles from '~/assets/scss/styles.module.scss';
-import { setMaxPrice } from '~/components/Product/productSlice';
 import ProductSlideShow from '~/components/Product/ProductSlideShow';
-import GetRandomDateWithinYears from '~/components/GetRandomDateWithinYears';
 import { ProductFilter, SortProduct } from '~/components/Product/ProductFilter';
 import FilterState from '~/components/CollectionItem/FilterState';
 const ProductItem = lazy(() => import('~/components/Product/ProductItem'));
+import { getProductList } from '~/services/apiServices';
 
 const cx = classNames.bind(styles);
 
-const DUMMY_PRODUCT_LIST = [
-	{
-		id: 1,
-		name: 'Adams Manufacturing Quik-Fold Step Stool',
-		price: 245,
-		salePrice: 0,
-		date: GetRandomDateWithinYears(3),
-		image_1: images.ProdImg1_1,
-		image_2: images.ProdImg1_2,
-		inStock: false,
-	},
-	{
-		id: 2,
-		name: 'Adjustable - Zinc Plated',
-		price: 354,
-		salePrice: 0,
-		date: GetRandomDateWithinYears(3),
-		image_1: images.ProdImg2_1,
-		image_2: images.ProdImg2_2,
-		inStock: false,
-	},
-	{
-		id: 3,
-		name: 'Acrylic Sheet, Standard Tolerance, ASTM D788',
-		price: 643,
-		salePrice: 0,
-		date: GetRandomDateWithinYears(3),
-		image_1: images.ProdImg3_1,
-		image_2: images.ProdImg3_2,
-		inStock: true,
-	},
-	{
-		id: 4,
-		name: '1278 Acrylic Felt Sheet - 1 Pc',
-		price: 500,
-		salePrice: 456,
-		date: GetRandomDateWithinYears(3),
-		image_1: images.ProdImg4_1,
-		image_2: images.ProdImg4_2,
-		inStock: true,
-	},
-	{
-		id: 5,
-		name: 'Earthwool Rafter Roll Insulation',
-		price: 356,
-		salePrice: 0,
-		date: GetRandomDateWithinYears(3),
-		image_1: images.ProdImg5_1,
-		image_2: images.ProdImg5_2,
-		inStock: true,
-	},
-	{
-		id: 6,
-		name: 'Hand Painted Ornate Crown Molding',
-		price: 180,
-		salePrice: 164,
-		date: GetRandomDateWithinYears(3),
-		image_1: images.ProdImg6_1,
-		image_2: images.ProdImg6_2,
-		inStock: true,
-	},
-	{
-		id: 7,
-		name: 'Hand Painted Ornate Crown Molding',
-		price: 130,
-		salePrice: 120,
-		date: GetRandomDateWithinYears(3),
-		image_1: images.ProdImg7_1,
-		image_2: images.ProdImg7_2,
-		inStock: true,
-	},
-	{
-		id: 8,
-		name: 'Hand Painted Ornate Crown Molding',
-		price: 150,
-		salePrice: 123,
-		date: GetRandomDateWithinYears(3),
-		image_1: images.ProdImg8_1,
-		image_2: images.ProdImg8_2,
-		inStock: true,
-	},
-	{
-		id: 9,
-		name: 'Hand Painted Ornate Crown Molding',
-		price: 125,
-		salePrice: 0,
-		date: GetRandomDateWithinYears(3),
-		image_2: images.ProdImg9_2,
-		image_1: images.ProdImg9_1,
-		inStock: true,
-	},
-	{
-		id: 10,
-		name: 'Hand Painted Ornate Crown Molding',
-		price: 132,
-		salePrice: 0,
-		date: GetRandomDateWithinYears(3),
-		image_1: images.ProdImg10_1,
-		image_2: images.ProdImg10_2,
-		inStock: true,
-	},
-	{
-		id: 11,
-		name: 'Hand Painted Ornate Crown Molding',
-		price: 170,
-		salePrice: 134,
-		date: GetRandomDateWithinYears(3),
-		image_1: images.ProdImg11_1,
-		image_2: images.ProdImg11_2,
-		inStock: true,
-	},
-	{
-		id: 12,
-		name: 'Hand Painted Ornate Crown Molding',
-		price: 223,
-		salePrice: 0,
-		date: GetRandomDateWithinYears(3),
-		image_1: images.ProdImg12_1,
-		image_2: images.ProdImg12_2,
-		inStock: true,
-	},
-	{
-		id: 13,
-		name: 'Hand Painted Ornate Crown Molding',
-		price: 254,
-		salePrice: 0,
-		date: GetRandomDateWithinYears(3),
-		image_1: images.ProdImg13_1,
-		image_2: images.ProdImg13_2,
-		inStock: true,
-	},
-	{
-		id: 14,
-		name: 'Hand Painted Ornate Crown Molding',
-		price: 360,
-		salePrice: 320,
-		date: GetRandomDateWithinYears(3),
-		image_1: images.ProdImg14_1,
-		image_2: images.ProdImg14_2,
-		inStock: true,
-	},
-	{
-		id: 15,
-		name: 'Hand Painted Ornate Crown Molding',
-		price: 354,
-		salePrice: 0,
-		date: GetRandomDateWithinYears(3),
-		image_1: images.ProdImg15_1,
-		image_2: images.ProdImg15_2,
-		inStock: true,
-	},
-	{
-		id: 16,
-		name: 'Hand Painted Ornate Crown Molding',
-		price: 590,
-		salePrice: 564,
-		date: GetRandomDateWithinYears(3),
-		image_1: images.ProdImg16_1,
-		image_2: images.ProdImg16_2,
-		inStock: true,
-	},
-];
-
-DUMMY_PRODUCT_LIST.forEach((item) => {
-	let discountPercent = (item.salePrice / item.price) * 100;
-	item.discountPercent = Math.round(100 - discountPercent);
-});
-
 function CollectionItem() {
-	const nameCollection = useOutletContext();
-	const [colView, setColView] = useState('three-col');
-	const [filteredProducts, setFilteredProducts] = useState(DUMMY_PRODUCT_LIST);
-	const [totalProductAfterFilter, setTotalProductAfterFilter] = useState(DUMMY_PRODUCT_LIST.length);
-	const [totalProductIsStock, setTotalProductIsStock] = useState(
-		DUMMY_PRODUCT_LIST.filter((product) => product.inStock).length,
-	);
+	const [originalProducts, setOriginalProducts] = useState([]);
+	const [filteredProducts, setFilteredProducts] = useState([]);
+	const [totalProductAfterFilter, setTotalProductAfterFilter] = useState(0);
+	const [totalProductIsStock, setTotalProductIsStock] = useState(0);
 	const [filterStateMounted, setFilterStateMounted] = useState(false);
 
-	const optionSort = useSelector((state) => state.product.selectedOption);
+	const nameCollection = useOutletContext();
+	const [colView, setColView] = useState('three-col');
+
 	const isStockFilterChecked = useSelector((state) => state.product.isStockFilter);
 	const inputValueMinFilter = useSelector((state) => state.product.inputValueMinFilter);
 	const inputValueMaxFilter = useSelector((state) => state.product.inputValueMaxFilter);
+	const optionSort = useSelector((state) => state.product.selectedOption);
 	const maxPrice = useSelector((state) => state.product.maxPrice);
+
 	const dispatch = useDispatch();
 
+	// Fetch product list from API
+	const fetchProductsList = async () => {
+		try {
+			const response = await getProductList();
+			response.forEach((product) => {
+				if (product.salePrice && product.price) {
+					product.discountPercent = 100 - Math.round((product.salePrice / product.price) * 100);
+				}
+			});
+			return response;
+		} catch (error) {
+			console.error('Failed to fetch products:', error);
+			return [];
+		}
+	};
+
 	useEffect(() => {
-		const calculatedMaxPrice = Math.max(...DUMMY_PRODUCT_LIST.map((product) => product.price));
-		dispatch(setMaxPrice(calculatedMaxPrice));
+		const loadProducts = async () => {
+			const products = await fetchProductsList();
+			setOriginalProducts(products);
+			setFilteredProducts(products);
+			setTotalProductAfterFilter(products.length);
+			setTotalProductIsStock(products.filter((product) => product.inStock).length);
+
+			if (products.length > 0) {
+				const calculatedMaxPrice = Math.max(...products.map((product) => product.price));
+				dispatch(setMaxPrice(calculatedMaxPrice));
+			}
+		};
+
+		loadProducts();
 	}, [dispatch]);
 
-	const handleFilterPriceChange = useCallback(
-		debounce((filteredProducts) => {
-			setFilteredProducts(filteredProducts);
-			setTotalProductAfterFilter(filteredProducts.length);
-		}, 500),
-		[],
-	);
+	// Apply filters and sorting
+	useEffect(() => {
+		if (originalProducts.length > 0) {
+			let filtered = [...originalProducts];
+
+			// Filter products by price
+			filtered = filtered.filter(
+				(product) => product.price >= inputValueMinFilter && product.price <= inputValueMaxFilter,
+			);
+			setTotalProductIsStock(filtered.filter((product) => product.inStock).length);
+
+			// Filter by stock status
+			if (isStockFilterChecked) {
+				filtered = filtered.filter((product) => product.inStock);
+			}
+
+			// Apply sorting
+			let sorted = _.cloneDeep(filtered);
+			if (optionSort === 'Price, low to high') {
+				sorted = _.sortBy(sorted, ['price']);
+			} else if (optionSort === 'Price, high to low') {
+				sorted = _.sortBy(sorted, ['price']).reverse();
+			} else if (optionSort === 'Date, old to new') {
+				sorted = _.sortBy(sorted, ['date']);
+			} else if (optionSort === 'Date, new to old') {
+				sorted = _.sortBy(sorted, ['date']).reverse();
+			} else if (optionSort === 'Alphabetically, A-Z') {
+				sorted = _.sortBy(sorted, ['name']);
+			} else if (optionSort === 'Alphabetically, Z-A') {
+				sorted = _.sortBy(sorted, ['name']).reverse();
+			}
+
+			setFilteredProducts(sorted);
+			setTotalProductAfterFilter(sorted.length);
+		}
+	}, [originalProducts, isStockFilterChecked, inputValueMinFilter, inputValueMaxFilter, optionSort]);
 
 	useEffect(() => {
-		let filtered = [...DUMMY_PRODUCT_LIST];
-
-		// Filter products by price
-		filtered = filtered.filter(
-			(product) => product.price >= inputValueMinFilter && product.price <= inputValueMaxFilter,
-		);
-		setTotalProductIsStock(filtered.filter((product) => product.inStock).length);
-
-		// Filter by stock status
-		if (isStockFilterChecked) {
-			filtered = filtered.filter((product) => product.inStock);
+		if (inputValueMinFilter === 0 && inputValueMaxFilter === maxPrice) {
+			setFilterStateMounted(false);
+		} else {
+			setFilterStateMounted(true);
 		}
-
-		// Apply sorting
-		let sorted = _.cloneDeep(filtered);
-		if (optionSort === 'Price, low to high') {
-			sorted = _.sortBy(sorted, ['price']);
-		} else if (optionSort === 'Price, high to low') {
-			sorted = _.sortBy(sorted, ['price']).reverse();
-		} else if (optionSort === 'Date, old to new') {
-			sorted = _.sortBy(sorted, ['date']);
-		} else if (optionSort === 'Date, new to old') {
-			sorted = _.sortBy(sorted, ['date']).reverse();
-		} else if (optionSort === 'Alphabetically, A-Z') {
-			sorted = _.sortBy(sorted, ['name']);
-		} else if (optionSort === 'Alphabetically, Z-A') {
-			sorted = _.sortBy(sorted, ['name']).reverse();
-		}
-
-		// Trigger debounced filter change
-		handleFilterPriceChange(sorted);
-	}, [
-		isStockFilterChecked,
-		inputValueMinFilter,
-		inputValueMaxFilter,
-		optionSort,
-		handleFilterPriceChange,
-	]);
-
-	const debouncedSetFilterStateMounted = useCallback(
-		debounce(() => {
-			if (inputValueMinFilter === 0 && inputValueMaxFilter === maxPrice) {
-				setFilterStateMounted(false);
-			} else setFilterStateMounted(true);
-		}, 500),
-		[inputValueMinFilter, inputValueMaxFilter],
-	);
-
-	useEffect(() => {
-		// Chỉ kích hoạt debouncedSetFilterStateMounted khi có sự thay đổi bộ lọc
-		debouncedSetFilterStateMounted();
 	}, [inputValueMinFilter, inputValueMaxFilter]);
 
 	const handleClosePriceFilterState = () => {
-		setFilterStateMounted(false);
 		dispatch(setInputValueMinFilter(0));
 		dispatch(setInputValueMaxFilter(maxPrice));
+		setFilterStateMounted(false);
+		// Reset filteredProducts to originalProducts
+		setFilteredProducts(originalProducts);
+		setTotalProductAfterFilter(originalProducts.length);
+		setTotalProductIsStock(originalProducts.filter((product) => product.inStock).length);
 	};
+
 	const handleCloseIsStockFilterState = () => {
 		dispatch(setIsStockFilter(false));
+		// Reset filteredProducts to originalProducts
+		setFilteredProducts(originalProducts);
+		setTotalProductAfterFilter(originalProducts.length);
+		setTotalProductIsStock(originalProducts.filter((product) => product.inStock).length);
 	};
 
 	return (
@@ -301,7 +152,7 @@ function CollectionItem() {
 			<div className={cx('products-list')}>
 				<div className={cx('product-title')}>
 					<SortProduct
-						totalProduct={DUMMY_PRODUCT_LIST.length}
+						totalProduct={originalProducts.length}
 						totalProductAfterFilter={totalProductAfterFilter}
 						setColView={setColView}
 						colView={colView}
@@ -340,16 +191,20 @@ function CollectionItem() {
 							<ProductFilter totalProductIsStock={totalProductIsStock} />
 						</Sider>
 						<Content className={cx('main-side', colView)}>
-							{filteredProducts.map((product) => (
-								<Suspense
-									fallback={<div>Đang tải...</div>}
-									key={product.id}>
-									<ProductItem
-										product={product}
-										colView={colView}
-									/>
-								</Suspense>
-							))}
+							{Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
+								filteredProducts.map((product) => (
+									<Suspense
+										fallback={<div>Đang tải...</div>}
+										key={product.id}>
+										<ProductItem
+											product={product}
+											colView={colView}
+										/>
+									</Suspense>
+								))
+							) : (
+								<div>No products available</div>
+							)}
 						</Content>
 					</Layout>
 				</div>
