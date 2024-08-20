@@ -1,0 +1,151 @@
+.product-item-desc-container {
+	display: flex;
+	justify-content: center;
+	gap: 50px;
+	height: 100vh;
+	overflow: scroll;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+	.show-image {
+		width: 550px;
+		position: sticky;
+		top: 20px;
+	}
+	.product-desc {
+		width: 500px;
+		.product-name {
+			font-size: 36px;
+			letter-spacing: 1.6px;
+			line-height: 46.8px;
+		}
+		.prices {
+			display: flex;
+			justify-content: flex-start;
+			gap: 6px;
+			margin-top: 15px;
+			align-items: center;
+
+			font-size: 18px;
+			font-weight: 700;
+			letter-spacing: 1.6px;
+			line-height: 27px;
+			color: #222222;
+			.price {
+			}
+			.sale-price {
+			}
+			.sale-mode {
+				text-transform: uppercase;
+				background-color: #ff0000;
+				color: #fff;
+				font-size: 14px;
+				font-weight: 700;
+				letter-spacing: 0.6px;
+				line-height: 16.8px;
+				padding: 4px 8px;
+			}
+		}
+		.in-stock-total {
+			margin-top: 19px;
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			line-height: 25.2px;
+			.check-icon {
+				color: #00ca8d;
+			}
+			.total {
+				font-size: 14px;
+				letter-spacing: 0.6px;
+				font-weight: 600;
+			}
+		}
+		.custom-range {
+			margin-top: 7px;
+			position: relative;
+			width: 100%;
+			background: #dbdbdb;
+			border-radius: 4px;
+			.quantity {
+				display: none;
+				width: 100%;
+			}
+			/* Thanh tiến trình */
+			.quantity-progress {
+				// position: absolute;
+				top: 0;
+				left: 0;
+				height: 3px;
+				background: #00ca8d; /* Màu của thanh tiến trình */
+				border-radius: 2px; /* Bo tròn các góc của thanh tiến trình */
+				z-index: 1; /* Đặt lên trên thanh trượt */
+			}
+		}
+		.size-view {
+			margin-top: 15px;
+			color: #222222;
+			font-size: 14px;
+			font-weight: 700;
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			&:hover {
+				cursor: pointer;
+				.size-chart {
+					text-decoration: underline;
+					text-underline-offset: 2px;
+				}
+			}
+		}
+	}
+}
+
+.old-price {
+	text-decoration: line-through;
+	color: #6f6f6f;
+	font-weight: 700;
+	font-size: 16px;
+	letter-spacing: 0.6px;
+	line-height: 24px;
+}
+.new-price {
+	color: #ff0000;
+}
+
+.slideshow-container {
+	width: 100%;
+	.main-image {
+		overflow: hidden;
+		.image {
+			width: 100%;
+			transition: translate 0.3s linear;
+
+			&:hover {
+				cursor: zoom-in;
+			}
+		}
+	}
+	.thumbnail-container {
+		margin-top: 25px;
+		display: flex;
+		justify-content: flex-start;
+		gap: 10px;
+		.thumbnail {
+			width: 100px;
+			height: 100px;
+			cursor: pointer;
+			img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+}
+
+.active {
+	outline: 1px solid #000;
+}
+.zoom-in {
+	cursor: zoom-out !important;
+}

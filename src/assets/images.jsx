@@ -61,6 +61,7 @@ import RightArrow from '../assets/images/right-arrow.png';
 import Slide1 from '~/assets/images/slide1.png';
 import Slide2 from '~/assets/images/slide2.png';
 import Slide3 from '~/assets/images/slide3.png';
+import size_guide from '~/assets/images/size_guide.webp';
 
 const images = {
 	ProdImg1_1,
@@ -122,6 +123,7 @@ const images = {
 	Slide3,
 	LeftArrow,
 	RightArrow,
+	size_guide,
 };
 
 export default images;

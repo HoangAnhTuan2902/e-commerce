@@ -10,6 +10,7 @@ const productSlice = createSlice({
 		inputValueMinFilter: 0,
 		inputValueMaxFilter: 0,
 		maxPrice: null,
+		categoryId: null,
 	},
 
 	reducers: {
@@ -36,6 +37,9 @@ const productSlice = createSlice({
 			// Cập nhật inputValueMaxFilter với giá trị maxPrice
 			state.inputValueMaxFilter = action.payload;
 		},
+		setCategoryId: (state, action) => {
+			state.categoryId = action.payload;
+		},
 	},
 });
 
@@ -45,6 +49,7 @@ export const {
 	setInputValueMinFilter,
 	setInputValueMaxFilter,
 	setMaxPrice,
+	setCategoryId,
 } = productSlice.actions;
 
 export default productSlice.reducer;

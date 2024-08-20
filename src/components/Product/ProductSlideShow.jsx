@@ -1,58 +1,36 @@
 import classNames from 'classnames/bind';
 import Slider from 'react-slick';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa6';
+import { setCategoryId } from './productSlice';
+import { useDispatch } from 'react-redux';
 
 import styles from '~/assets/scss/styles.module.scss';
-import CollectionImg1 from '~/assets/images/collection-img-1.webp';
-import CollectionImg2 from '~/assets/images/collection-img-3.webp';
-import CollectionImg3 from '~/assets/images/collection-img-5.webp';
-import CollectionImg4 from '~/assets/images/collection-img-2.webp';
-import CollectionImg5 from '~/assets/images/collection-img-7.webp';
-import CollectionImg6 from '~/assets/images/collection-img-8.webp';
-import CollectionImg7 from '~/assets/images/collection-img-9.webp';
-
-const DUMMY_COLLECTION_LIST = [
-	{
-		id: 1,
-		name: 'Acrylic Sheets',
-		image: CollectionImg1,
-	},
-	{
-		id: 2,
-		name: 'Builders Hardware',
-		image: CollectionImg2,
-	},
-	{
-		id: 3,
-		name: 'Cement & Masonry',
-		image: CollectionImg3,
-	},
-	{
-		id: 4,
-		name: 'Drywall',
-		image: CollectionImg4,
-	},
-	{
-		id: 5,
-		name: 'Fireplace & Hearth',
-		image: CollectionImg5,
-	},
-	{
-		id: 6,
-		name: 'Insulation',
-		image: CollectionImg6,
-	},
-	{
-		id: 7,
-		name: 'Interior Stair Parts',
-		image: CollectionImg7,
-	},
-];
+import { getCategoriesList } from '~/services/apiServices';
 
 const cx = classNames.bind(styles);
 function ProductSlideShow() {
 	const sliderRef = useRef(null);
+	const [categories, setCategories] = useState([]);
+	const dispatch = useDispatch();
+
+	const fetchCategoriesList = async () => {
+		try {
+			const response = await getCategoriesList();
+			return response;
+		} catch (error) {
+			console.error('Failed to fetch categories:', error);
+			return [];
+		}
+	};
+
+	useEffect(() => {
+		const loadCategories = async () => {
+			const loadCategories = await fetchCategoriesList();
+			setCategories(loadCategories);
+		};
+		loadCategories();
+	}, []);
 
 	const settings = {
 		dots: false,
@@ -77,17 +55,16 @@ function ProductSlideShow() {
 					ref={sliderRef}
 					className={cx('collection-list-slider')}
 					{...settings}>
-					{DUMMY_COLLECTION_LIST.map((item) => (
+					{categories?.map((item) => (
 						<div
 							key={item.id}
 							className={cx('collection-list-item')}>
-							<div className={cx('list-item-image')}>
-								<img
-									src={item.image}
-									alt=''
-								/>
+							<div onClick={() => dispatch(setCategoryId(item.id))}>
+								<div className={cx('list-item-image')}>
+									<img src={item.bannerImage} />
+								</div>
+								<button className={cx('list-item-btn')}>{item.name}</button>
 							</div>
-							<button className={cx('list-item-btn')}>{item.name}</button>
 						</div>
 					))}
 				</Slider>

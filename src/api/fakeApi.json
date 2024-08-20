@@ -1,184 +1,176 @@
 {
+	"categories": [
+		{
+			"id": "1",
+			"name": "acrylic sheets",
+			"bannerImage": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908215/sermnbgjdgvyfpw0clrj.webp"
+		},
+		{
+			"id": "2",
+			"name": "Builders Hardware",
+			"bannerImage": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908216/fbqdak3fsb6mfj6xqok7.webp"
+		},
+		{
+			"id": "3",
+			"name": "Cement & Masonry",
+			"bannerImage": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908216/hgos6tywfrd2rs2jphxv.webp"
+		},
+		{
+			"id": "4",
+			"name": "Drywall",
+			"bannerImage": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908218/cfozxehwopzsibwayiet.webp"
+		},
+		{
+			"id": "5",
+			"name": "Fireplace & Hearth",
+			"bannerImage": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908216/f6fgt7rk5mhmsohwuet3.webp"
+		},
+		{
+			"id": "6",
+			"name": "Insulation",
+			"bannerImage": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908216/kzjmfvbpqhy6hcomyrzi.webp"
+		},
+		{
+			"id": "7",
+			"name": "Interior Stair Parts",
+			"bannerImage": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908216/iqbs0eomxxqvfbdoeqgz.webp"
+		}
+	],
 	"products": [
 		{
-			"id": 1,
-			"name": "Adams Manufacturing Quik-Fold Step Stool",
-			"price": 500,
-			"salePrice": 456,
-			"date": "2021-08-12T12:34:56.789Z",
-			"image_1": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908216/qsby8ftv1xtxwmoakfso.webp",
-			"image_2": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908210/zyykjkv5anylj3bosbwb.webp",
-			"inStock": false
+			"id": "11",
+			"name": "Little Giant Ladder Systems 15109-001 300-Pound",
+			"price": 590,
+			"productionDate": "2021-10-01T13:21:09.876Z",
+			"discountPercent": 4,
+			"listImages": [
+				"https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908214/o3qicmyfmjueqnzlonaw.png",
+				"https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908214/pv2ennsvgl1xv41dexyo.webp"
+			],
+			"isStock": true,
+			"description": "Our company cares about the clients and never lets them down...",
+			"categoryId": "1",
+			"inStockTotal": 43
 		},
 		{
-			"id": 2,
-			"name": "Adjustable - Zinc Plated",
-			"price": 643,
-			"salePrice": 0,
-			"date": "2022-03-21T08:15:23.456Z",
-			"image_1": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908211/yzvlesx53xb7bhejarik.png",
-			"image_2": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908211/al9vjsph6e6bgr78cx3y.webp",
-			"inStock": false
+			"id": "12",
+			"name": "Louisville Ladder FS1506 300-Pound",
+			"price": 170,
+			"productionDate": "2022-05-19T22:45:12.345Z",
+			"discountPercent": 21,
+			"listImages": [
+				"https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908212/x7mhtd5vgor9uf1p1lrl.png",
+				"https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908212/gle4f9hcshomgnagigx7.webp"
+			],
+			"isStock": true,
+			"description": "Our company cares about the clients and never lets them down...",
+			"categoryId": "2",
+			"inStockTotal": 12
 		},
 		{
-			"id": 3,
-			"name": "Acrylic Sheet, Standard Tolerance, ASTM D788",
-			"price": 245,
-			"salePrice": 0,
-			"date": "2023-01-05T16:45:12.345Z",
-			"image_1": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908212/uveff22ayukchpcywous.png",
-			"image_2": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908212/uandu2xcjqvq4newhnov.webp",
-			"inStock": true
+			"id": "14",
+			"name": "Multi Purpose Aluminum Ladder Folding Step Ladder",
+			"price": 223,
+			"productionDate": "2022-01-14T18:15:23.456Z",
+			"discountPercent": 0,
+			"listImages": [
+				"https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908212/nep15sufbcw3hintyua1.png",
+				"https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908212/jmbwfpivzluti2y6kdmd.webp"
+			],
+			"isStock": true,
+			"description": "Our company cares about the clients and never lets them down...",
+			"categoryId": "3",
+			"inStockTotal": 34
 		},
 		{
-			"id": 4,
-			"name": "1278 Acrylic Felt Sheet - 1 Pc",
-			"price": 354,
-			"salePrice": 0,
-			"date": "2022-11-18T09:23:45.678Z",
-			"image_1": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908212/d59b7wpkqyn5dxj8mhzz.png",
-			"image_2": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908212/nhw33niltuyksvesaimj.webp",
-			"inStock": true
-		},
-		{
-			"id": 5,
-			"name": "Earthwool Rafter Roll Insulation",
-			"price": 356,
-			"salePrice": 0,
-			"date": "2021-06-29T14:32:10.987Z",
-			"image_1": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908213/ac8jezwvzivorj3fnczq.png",
-			"image_2": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908213/kmzfrdalparuy8ksbamr.webp",
-			"inStock": true
-		},
-		{
-			"id": 6,
+			"id": "6",
 			"name": "Hand Painted Ornate Crown Molding",
 			"price": 180,
-			"salePrice": 164,
-			"date": "2023-04-12T21:56:34.123Z",
-			"image_1": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908213/ndzwpjavc4rnorqmnqju.png",
-			"image_2": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908213/czfhntjfm7ozv62rbphy.webp",
-			"inStock": true
+			"productionDate": "2023-04-12T21:56:34.123Z",
+			"discountPercent": 9,
+			"listImages": [
+				"https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908213/ndzwpjavc4rnorqmnqju.png",
+				"https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908213/czfhntjfm7ozv62rbphy.webp"
+			],
+			"isStock": true,
+			"description": "Our company cares about the clients and never lets them down...",
+			"categoryId": ["4", "5"],
+			"inStockTotal": 78
 		},
 		{
-			"id": 7,
-			"name": "Hand Painted Ornate Crown Molding",
-			"price": 125,
-			"salePrice": 0,
-			"date": "2022-09-07T17:43:21.987Z",
-			"image_1": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908217/tup1isinsywjdw199yzo.webp",
-			"image_2": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908214/t2pe3wup16bjjnjc5by8.webp",
-			"inStock": true
-		},
-		{
-			"id": 8,
+			"id": "8",
 			"name": "Hand Painted Ornate Crown Molding",
 			"price": 150,
-			"salePrice": 123,
-			"date": "2021-12-24T11:22:33.456Z",
-			"image_1": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908214/czfhrrdzwg8yrnq51ikm.png",
-			"image_2": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908214/t2pe3wup16bjjnjc5by8.webp",
-			"inStock": true
+			"productionDate": "2021-12-24T11:22:33.456Z",
+			"discountPercent": 8,
+			"listImages": [
+				"https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908214/czfhrrdzwg8yrnq51ikm.png",
+				"https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908214/t2pe3wup16bjjnjc5by8.webp"
+			],
+			"isStock": true,
+			"description": "Our company cares about the clients and never lets them down...",
+			"categoryId": "5",
+			"inStockTotal": 29
 		},
 		{
-			"id": 9,
-			"name": "Hand Painted Ornate Crown Molding",
-			"price": 132,
-			"salePrice": 0,
-			"date": "2022-07-15T06:54:32.109Z",
-			"image_2": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908211/nsinrgtw1dkt4edd3oji.png",
-			"image_1": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908211/qrqgeoe613xz03tog4t0.webp",
-			"inStock": true
-		},
-		{
-			"id": 10,
-			"name": "Hand Painted Ornate Crown Molding",
-			"price": 354,
-			"salePrice": 0,
-			"date": "2023-02-28T19:34:56.789Z",
-			"image_1": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908211/qrqgeoe613xz03tog4t0.webp",
-			"image_2": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908214/pvg4jzwqk9oropjll4l7.webp",
-			"inStock": true
-		},
-		{
-			"id": 11,
-			"name": "Hand Painted Ornate Crown Molding",
-			"price": 590,
-			"salePrice": 564,
-			"date": "2021-10-01T13:21:09.876Z",
-			"image_1": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908214/o3qicmyfmjueqnzlonaw.png",
-			"image_2": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908214/pv2ennsvgl1xv41dexyo.webp",
-			"inStock": true
-		},
-		{
-			"id": 12,
-			"name": "Hand Painted Ornate Crown Molding",
-			"price": 170,
-			"salePrice": 134,
-			"date": "2022-05-19T22:45:12.345Z",
-			"image_1": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908212/x7mhtd5vgor9uf1p1lrl.png",
-			"image_2": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908212/gle4f9hcshomgnagigx7.webp",
-			"inStock": true
-		},
-		{
-			"id": 13,
+			"id": "13",
 			"name": "Hand Painted Ornate Crown Molding",
 			"price": 254,
-			"salePrice": 0,
-			"date": "2023-09-26T10:32:56.789Z",
-			"image_1": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908213/dqvotmslormhqcne8qmr.png",
-			"image_2": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908213/kttjirmaayjzzfj1k2um.webp",
-			"inStock": true
+			"productionDate": "2023-09-26T10:32:56.789Z",
+			"discountPercent": 0,
+			"listImages": [
+				"https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908213/dqvotmslormhqcne8qmr.png",
+				"https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908213/kttjirmaayjzzfj1k2um.webp"
+			],
+			"isStock": true,
+			"description": "Our company cares about the clients and never lets them down...",
+			"categoryId": "6",
+			"inStockTotal": 65
 		},
 		{
-			"id": 14,
-			"name": "Hand Painted Ornate Crown Molding",
-			"price": 223,
-			"salePrice": 0,
-			"date": "2022-01-14T18:15:23.456Z",
-			"image_1": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908212/nep15sufbcw3hintyua1.png",
-			"image_2": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908212/jmbwfpivzluti2y6kdmd.webp",
-			"inStock": true
+			"id": "7",
+			"name": "Insulating Foam Pipe Covers, Pack of 4 Sticks",
+			"price": 125,
+			"productionDate": "2022-09-07T17:43:21.987Z",
+			"discountPercent": 0,
+			"listImages": [
+				"https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908217/tup1isinsywjdw199yzo.webp",
+				"https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908214/t2pe3wup16bjjnjc5by8.webp"
+			],
+			"isStock": true,
+			"description": "Our company cares about the clients and never lets them down...",
+			"categoryId": "7",
+			"inStockTotal": 53
 		},
 		{
-			"id": 15,
-			"name": "Hand Painted Ornate Crown Molding",
+			"id": "9",
+			"name": "Insulation for Hot or Cold Pipes",
+			"price": 132,
+			"productionDate": "2022-07-15T06:54:32.109Z",
+			"discountPercent": 0,
+			"listImages": [
+				"https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908211/qrqgeoe613xz03tog4t0.webp",
+				"https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908211/nsinrgtw1dkt4edd3oji.png"
+			],
+			"isStock": true,
+			"description": "Our company cares about the clients and never lets them down...",
+			"categoryId": "1",
+			"inStockTotal": 84
+		},
+		{
+			"id": "15",
+			"name": "Swivel Staples Safety Hasps",
 			"price": 360,
-			"salePrice": 320,
-			"date": "2021-04-03T07:43:21.987Z",
-			"image_1": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908213/hijsxmzvtl5repzni4ln.png",
-			"image_2": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908214/redazejg9x7nymvxemqm.webp",
-			"inStock": true
-		},
-		{
-			"id": 16,
-			"name": "Hand Painted Ornate Crown Molding",
-			"price": 620,
-			"salePrice": 600,
-			"date": "2022-12-31T23:59:59.999Z",
-			"image_1": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723910535/mlwz0ee5h5hlumhhmhqp.png",
-			"image_2": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723910534/soixm58mviecbrfv2cer.webp",
-			"inStock": true
-		},
-		{
-			"id": 17,
-			"name": "Residential Door Hinge",
-			"price": 190,
-			"salePrice": 170,
-			"date": "2022-17-31T23:59:40.999Z",
-			"image_1": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723910297/nmqhijv12ht63wjr5xpu.png",
-			"image_2": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723910297/humorvhpbz2viekkz5zn.webp",
-			"inStock": true
-		},
-		{
-			"id": 18,
-			"name": "Xtend & Climb FW-71",
-			"price": 130,
-			"salePrice": 120,
-			"date": "2022-17-31T23:59:40.999Z",
-			"image_1": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908214/em8k39mij4ovbi9bhpq3.png",
-			"image_2": "https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908214/dfhrb3oa2hp93nvm6r9l.webp",
-			"inStock": true
+			"productionDate": "2021-04-03T07:43:21.987Z",
+			"discountPercent": 11,
+			"listImages": [
+				"https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908212/ppbu4x5tkgeacog8um4k.png",
+				"https://res.cloudinary.com/dmjafhfiu/image/upload/v1723908212/ohlzmv1cnprx8vl3p1mk.webp"
+			],
+			"isStock": true,
+			"description": "Our company cares about the clients and never lets them down...",
+			"categoryId": "2",
+			"inStockTotal": 25
 		}
 	]
 }

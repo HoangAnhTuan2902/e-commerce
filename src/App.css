@@ -10,7 +10,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: all 0.3s ease;
   font-family: 'Nunito Sans', sans-serif;
 
 }
@@ -28,11 +27,12 @@ button {
   outline: none;
 }
 
-ul {
-  li {
-    list-style-type: none;
-  }
+
+li {
+  list-style-type: none;
+  list-style: none;
 }
+
 
 a {
   text-decoration: none;

@@ -4,4 +4,8 @@ const getProductList = () => {
 	return axios.get('/products');
 };
 
-export { getProductList };
+const getCategoriesList = () => {
+	return axios.get('/categories');
+};
+
+export { getProductList, getCategoriesList };
