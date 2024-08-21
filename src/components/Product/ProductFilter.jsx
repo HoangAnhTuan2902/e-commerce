@@ -9,13 +9,13 @@ import {
 } from './productSlice';
 import { Collapse, Checkbox, Row, Slider, InputNumber, Space, ConfigProvider } from 'antd';
 import classNames from 'classnames/bind';
+
 import styles from '~/assets/scss/styles.module.scss';
 import '~/assets/scss/CustomPackage/CustomSliderAntDesign.scss';
 import '~/assets/scss/CustomPackage/CustomReactSelect.scss';
+import '~/assets/scss/CustomPackage/CustomCollapseAntDesign.scss';
 
 const cx = classNames.bind(styles);
-
-// eslint-disable-next-line react/prop-types
 function ProductFilter({ totalProductIsStock }) {
 	const isStockChecked = useSelector((state) => state.product.isStockFilter);
 	const inputValueMin = useSelector((state) => state.product.inputValueMinFilter);
@@ -110,7 +110,7 @@ function ProductFilter({ totalProductIsStock }) {
 
 	return (
 		<Collapse
-			className={cx('collapse')}
+			expandIconPosition='end'
 			items={items}
 			defaultActiveKey={['1']}
 		/>

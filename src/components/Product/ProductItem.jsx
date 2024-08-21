@@ -6,7 +6,7 @@ import { GoHeart } from 'react-icons/go';
 import { LuArrowRightLeft } from 'react-icons/lu';
 import { PiEyeLight } from 'react-icons/pi';
 import { memo } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 const ProductItem = memo(({ product, colView }) => {
@@ -39,27 +39,27 @@ const ProductItem = memo(({ product, colView }) => {
 							</>
 						)}
 					</div>
-					<Row className={cx('interact-prod')}>
-						<div
-							className={cx('interact-icon', {
-								'interact-icon-two-col': colView === 'two-col',
-							})}>
-							<GoHeart className={cx('icon')} />
-						</div>
-						<div
-							className={cx('interact-icon', {
-								'interact-icon-two-col': colView === 'two-col',
-							})}>
-							<LuArrowRightLeft className={cx('icon')} />
-						</div>
-						<div
-							className={cx('interact-icon', {
-								'interact-icon-two-col': colView === 'two-col',
-							})}>
-							<PiEyeLight className={cx('icon')} />
-						</div>
-					</Row>
 				</Link>
+				<Row className={cx('interact-prod')}>
+					<div
+						className={cx('interact-icon', {
+							'interact-icon-two-col': colView === 'two-col',
+						})}>
+						<GoHeart className={cx('icon')} />
+					</div>
+					<div
+						className={cx('interact-icon', {
+							'interact-icon-two-col': colView === 'two-col',
+						})}>
+						<LuArrowRightLeft className={cx('icon')} />
+					</div>
+					<div
+						className={cx('interact-icon', {
+							'interact-icon-two-col': colView === 'two-col',
+						})}>
+						<PiEyeLight className={cx('icon')} />
+					</div>
+				</Row>
 				<div className={cx('button-wrapper')}>
 					<div className={cx('button')}>
 						<button className={cx('add-btn')}>Add to card</button>

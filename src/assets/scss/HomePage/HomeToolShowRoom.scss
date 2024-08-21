@@ -16,10 +16,6 @@ $nav-color: #f6b73b;
 	top: 43% !important;
 	right: 16.2% !important;
 }
-.hover-icon {
-	background-color: $nav-color !important;
-	color: #fff !important;
-}
 
 .tool-show-room-container {
 	// position: relative;
@@ -48,6 +44,10 @@ $nav-color: #f6b73b;
 				border-radius: 50%;
 				width: 40px;
 				height: 40px;
+				&.hover-icon {
+					background-color: $nav-color !important;
+					color: #fff !important;
+				}
 			}
 
 			&.btn-1 {

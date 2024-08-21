@@ -6,23 +6,23 @@ function Login() {
 		{
 			key: '1',
 			label: (
-				<a
+				<span
 					target='_blank'
 					rel='noopener noreferrer'
 					href='https://www.antgroup.com'>
 					1st menu item
-				</a>
+				</span>
 			),
 		},
 		{
 			key: '2',
 			label: (
-				<a
+				<span
 					target='_blank'
 					rel='noopener noreferrer'
 					href='https://www.aliyun.com'>
 					2nd menu item (disabled)
-				</a>
+				</span>
 			),
 			icon: <SmileOutlined />,
 			disabled: true,
@@ -34,12 +34,12 @@ function Login() {
 				menu={{
 					items,
 				}}>
-				<a onClick={(e) => e.preventDefault()}>
+				<span onClick={(e) => e.preventDefault()}>
 					<Space>
 						Hover me
 						<DownOutlined />
 					</Space>
-				</a>
+				</span>
 			</Dropdown>
 		</div>
 	);

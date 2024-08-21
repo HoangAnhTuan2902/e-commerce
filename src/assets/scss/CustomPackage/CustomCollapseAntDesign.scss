@@ -1,0 +1,47 @@
+.ant-collapse {
+	background-color: transparent;
+	border: none;
+	.ant-collapse-item {
+		border-top: 1px solid #9e9e9e;
+		border-bottom: none;
+
+		.ant-collapse-header {
+			text-transform: uppercase;
+		}
+		.ant-collapse-content {
+			border: none;
+			.ant-collapse-content-box {
+				padding: 0 0 10px 26px;
+				.ant-row {
+					padding: 4px 0;
+					gap: 50px;
+					align-items: center;
+				}
+			}
+		}
+	}
+	&.collapse {
+		.ant-collapse-item {
+			border-top: 1px solid #eeeeee;
+			border-bottom: none;
+			&:last-child {
+				border-radius: 0;
+				border-bottom: 1px solid #eeeeee;
+			}
+			.ant-collapse-header {
+				text-transform: uppercase;
+			}
+			.ant-collapse-content {
+				border: none;
+				.ant-collapse-content-box {
+					padding: 0 0 10px 26px;
+					.ant-row {
+						padding: 4px 0;
+						gap: 50px;
+						align-items: center;
+					}
+				}
+			}
+		}
+	}
+}

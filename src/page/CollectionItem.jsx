@@ -221,12 +221,10 @@ function CollectionItem() {
 									<Suspense
 										fallback={<div>Đang tải...</div>}
 										key={product.id}>
-										<Link>
-											<ProductItem
-												product={product}
-												colView={colView}
-											/>
-										</Link>
+										<ProductItem
+											product={product}
+											colView={colView}
+										/>
 									</Suspense>
 								))
 							) : (

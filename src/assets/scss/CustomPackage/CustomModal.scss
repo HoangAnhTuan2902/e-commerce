@@ -1,3 +1,19 @@
 .ant-modal-content {
 	border-radius: 0 !important;
+	.ant-modal-close {
+		&:hover {
+			color: rgba(0, 0, 0, 0.88);
+			background-color: transparent;
+		}
+		&::before {
+			position: absolute;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			content: ' ';
+			border: 1px solid #e8e8e8;
+			border-radius: 50%;
+		}
+	}
 }
