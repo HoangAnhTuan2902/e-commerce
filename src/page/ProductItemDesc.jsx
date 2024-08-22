@@ -1,34 +1,41 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Flex, Modal } from 'antd';
+import { Modal } from 'antd';
 import classNames from 'classnames/bind';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { GoCheckCircle } from 'react-icons/go';
-
 import { Collapse } from 'antd';
-
 import { BsClock } from 'react-icons/bs';
 import { LuMinus, LuPlus } from 'react-icons/lu';
 import { GoHeart } from 'react-icons/go';
 import { MdCompareArrows } from 'react-icons/md';
+
 import styles from '~/assets/scss/styles.module.scss';
 import GoToHome from '~/components/GoToHome';
 import SlideShow from '~/components/ProductItemDesc/SlideShow';
 import images from '~/assets/images';
 import ruler from '~/assets/svg/ruler.svg';
 import '~/assets/scss/CustomPackage/CustomModal.scss';
+import '~/assets/scss/CustomPackage/CustomCollapseAntDesign.scss';
 import svgs from '~/assets/svg';
-// import '~/assets/scss/CustomPackage/CustomCollapseAntDesign.scss';
+import { getCategoriesList } from '~/services/apiServices';
+import SideContent from '~/components/SideContent';
 
 const cx = classNames.bind(styles);
 function ProductItemDesc() {
 	const [open, setOpen] = useState(false);
 	const [quatity, setQuatity] = useState(1);
+	const [categories, setCategories] = useState([]);
+	const [sideContentIn, setSideContentIn] = useState({ details: false, use: false });
 
-	const { pathname } = window.location;
-	const [secondPath, thirdPath] = pathname.split('/').filter(Boolean).map(decodeURIComponent);
-
-	// Extract product from location state
 	const location = useLocation();
+	const { pathname } = location;
+
+	const [secondPath, thirdPath] = pathname
+		.toLowerCase()
+		.split('/')
+		.filter(Boolean)
+		.map(decodeURIComponent);
+
 	const product = location.state?.product;
 
 	const rangeContainerRef = useRef(null);
@@ -39,9 +46,29 @@ function ProductItemDesc() {
 		}
 		setQuatity((prev) => prev - 1);
 	};
-	const handleIncreaseQuatity = (e) => {
+	const handleIncreaseQuatity = () => {
 		setQuatity((prev) => prev + 1);
 	};
+	const handleDetailsIn = () => {
+		setSideContentIn((prev) => ({ ...prev, details: !prev.details }));
+	};
+	const handleUseIn = () => {
+		setSideContentIn((prev) => ({ ...prev, use: !prev.use }));
+	};
+	const fetchCategoriesList = async () => {
+		try {
+			const response = await getCategoriesList();
+			setCategories(response);
+		} catch (error) {
+			console.error('Failed to fetch categories:', error);
+		}
+	};
+
+	useEffect(() => {
+		fetchCategoriesList();
+	}, []);
+
+	// const categories = useSelector((state) => state.collection.categories);
 
 	useEffect(() => {
 		if (rangeContainerRef.current) {
@@ -77,10 +104,13 @@ function ProductItemDesc() {
 			label: <p className={cx('detail-title')}>PRODUCT DETAILS</p>,
 			children: (
 				<ul className={cx('custom-ul')}>
-					<li className={cx('custom-li')}>Relaxed-fit</li>
-					<li className={cx('custom-li')}>Jacquard-knit fabric with wool content</li>
-					<li className={cx('custom-li')}>Round neckline</li>
-					<li className={cx('custom-li')}>Dropped shoulders</li>
+					{product.productDetails?.map((item, index) => (
+						<li
+							key={index}
+							className={cx('custom-li')}>
+							{item}
+						</li>
+					))}
 				</ul>
 			),
 		},
@@ -91,7 +121,9 @@ function ProductItemDesc() {
 				<ul className={cx('custom-ul')}>
 					<li className={cx('custom-li-info')}>
 						<p className={cx('name')}>Vendor:</p>
-						<p className={cx('info')}>Storage</p>
+						<Link to={'/collections'}>
+							<p className={cx('info')}>Storage</p>
+						</Link>
 					</li>
 					<li className={cx('custom-li-info')}>
 						<p className={cx('name')}>Type:</p>
@@ -99,13 +131,13 @@ function ProductItemDesc() {
 					</li>
 					<li className={cx('custom-li-info')}>
 						<p className={cx('name')}>Collections:</p>
-						<p className={cx('info')}>Acrylic Sheets,</p>
-						<p className={cx('info')}> Boat Docks & Accessories,</p>
-						<p className={cx('info')}> Builders Hardware,</p>
-						<p className={cx('info')}> Drywall,</p>
-						<p className={cx('info')}> Interior Stair Parts,</p>
-						<p className={cx('info')}> Ladders,</p>
-						<p className={cx('info')}> Safety Equipment</p>
+						{categories?.map((item) => (
+							<p
+								key={item.id}
+								className={cx('info')}>
+								<Link to={`/collections/${encodeURIComponent(item.name.toLowerCase())}`}>{item.name},</Link>
+							</p>
+						))}
 					</li>
 				</ul>
 			),
@@ -157,10 +189,7 @@ function ProductItemDesc() {
 						<span
 							onClick={() => setOpen(true)}
 							className={cx('size-view')}>
-							<img
-								src={ruler}
-								alt=''
-							/>
+							<img src={ruler} />
 							<p className={cx('size-chart')}>Size chart</p>
 						</span>
 						<Modal
@@ -176,7 +205,6 @@ function ProductItemDesc() {
 							<img
 								style={{ width: '100%' }}
 								src={images.size_guide}
-								alt=''
 							/>
 						</Modal>
 						<span className={cx('quatity-title')}>
@@ -239,29 +267,48 @@ function ProductItemDesc() {
 					</div>
 					<div className={cx('customer-care')}>
 						<li className={cx('customer-care-item')}>
-							<img
-								src={svgs.shipping}
-								alt=''
-							/>
+							<img src={svgs.shipping} />
 							<p>Free delivery</p>
 						</li>
 						<li className={cx('customer-care-item')}>
-							<img
-								src={svgs.returns}
-								alt=''
-							/>
+							<img src={svgs.returns} />
 							<p>Free returns</p>
 						</li>
 						<li className={cx('customer-care-item')}>
-							<img
-								src={svgs.deliveryInfo}
-								alt=''
-							/>
+							<img src={svgs.deliveryInfo} />
 							<p>More delivery info</p>
 						</li>
 					</div>
+					<ul className={cx('side-info')}>
+						<li
+							onClick={handleUseIn}
+							className={cx('side-details')}>
+							<img src={svgs.details} />
+							<p>details</p>
+						</li>
+						<li
+							onClick={handleDetailsIn}
+							className={cx('side-details')}>
+							<img src={svgs.eye} />
+							<p>look after me</p>
+						</li>
+					</ul>
 				</div>
 			</div>
+			<SideContent
+				onClick={() => handleDetailsIn()}
+				sideContentIn={sideContentIn.details}
+				title={'look after me'}
+				content={product.use}
+				className={'side-content-item'}
+			/>
+			<SideContent
+				onClick={() => handleUseIn()}
+				sideContentIn={sideContentIn.use}
+				title={'details'}
+				content={product.productDetails}
+				className={'side-content-details'}
+			/>
 		</div>
 	);
 }

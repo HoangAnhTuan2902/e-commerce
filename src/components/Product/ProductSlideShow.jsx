@@ -1,35 +1,22 @@
 import classNames from 'classnames/bind';
 import Slider from 'react-slick';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa6';
 import { setCategoryId } from './productSlice';
-import { useDispatch } from 'react-redux';
 
 import styles from '~/assets/scss/styles.module.scss';
-import { getCategoriesList } from '~/services/apiServices';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { setCategories } from '~/page/collectionSlice';
 
 const cx = classNames.bind(styles);
 function ProductSlideShow() {
 	const sliderRef = useRef(null);
-	const [categories, setCategories] = useState([]);
 	const dispatch = useDispatch();
-
-	const fetchCategoriesList = async () => {
-		try {
-			const response = await getCategoriesList();
-			return response;
-		} catch (error) {
-			console.error('Failed to fetch categories:', error);
-			return [];
-		}
-	};
+	const categories = useSelector((state) => state.collection.categories);
 
 	useEffect(() => {
-		const loadCategories = async () => {
-			const loadCategories = await fetchCategoriesList();
-			setCategories(loadCategories);
-		};
-		loadCategories();
+		dispatch(setCategories(categories));
 	}, []);
 
 	const settings = {

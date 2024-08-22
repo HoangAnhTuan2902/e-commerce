@@ -1,12 +1,10 @@
 /* eslint-disable react/prop-types */
 import classNames from 'classnames/bind';
 import styles from '~/assets/scss/styles.module.scss';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 function CollectionChild({ collection }) {
-	const location = useLocation();
-
 	return (
 		<div className={cx('collection-items-container')}>
 			<Link

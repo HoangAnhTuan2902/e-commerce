@@ -19,7 +19,7 @@ function GoToHome({ secondPath, thirdPath = '' }) {
 			{thirdPath ? (
 				<DynamicLink
 					className={cx('go-to-home')}
-					to={`/collections/${secondPath}`}>
+					to={`/collections/${encodeURIComponent(secondPath)}`}>
 					{secondPath}
 				</DynamicLink>
 			) : (

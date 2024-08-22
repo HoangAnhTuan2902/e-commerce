@@ -1,0 +1,45 @@
+.side-content {
+	transition: right 0.3s ease-in-out;
+	padding: 20px;
+	position: fixed;
+	right: -100%;
+	top: 0;
+	bottom: 0;
+	z-index: 10;
+	height: 100vh;
+	border: 1px solid #e0e0e0;
+	background-color: #fff;
+	display: flex;
+	.side-title {
+		margin: 5px 0 23px 0;
+		text-transform: uppercase;
+		color: #222222;
+		font-size: 18px;
+		letter-spacing: 0.6px;
+		line-height: 26px;
+	}
+	ul {
+		.side-content-item {
+			margin: 16px 0;
+			letter-spacing: 1.2px;
+			line-height: 28.8px;
+			font-size: 14px;
+			color: #222222bf;
+		}
+	}
+	.close-icon {
+		height: 26px;
+		font-size: 20px;
+	}
+	ul {
+		.side-content-details {
+			margin-left: 20px;
+			list-style: inside;
+			color: #222222bf;
+			font-size: 14px;
+			letter-spacing: 0.6px;
+			line-height: 28.8px;
+			text-align: left;
+		}
+	}
+}

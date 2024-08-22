@@ -5,6 +5,7 @@ $nav-color: #f6b73b;
 	gap: 50px;
 	// height: 100vh;
 	// overflow: scroll;
+	position: relative;
 	&::-webkit-scrollbar {
 		display: none;
 	}
@@ -311,6 +312,26 @@ $nav-color: #f6b73b;
 					font-weight: 600;
 					letter-spacing: 0.6px;
 					line-height: 18.2px;
+				}
+			}
+		}
+		.side-info {
+			margin-top: 37px;
+			display: flex;
+			gap: 40px;
+			justify-content: flex-start;
+			.side-details {
+				gap: 8px;
+				display: flex;
+				align-items: center;
+				color: #222222;
+				font-size: 12px;
+				font-weight: 600;
+				text-transform: uppercase;
+				cursor: pointer;
+				&:hover {
+					text-decoration: underline;
+					text-underline-offset: 2px;
 				}
 			}
 		}
